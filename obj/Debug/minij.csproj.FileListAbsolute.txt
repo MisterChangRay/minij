@@ -5,3 +5,4 @@ C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.exe
 C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.pdb
 C:\Users\Mrui\Desktop\minij\minij\bin\Debug\CommandLine.dll
 C:\Users\Mrui\Desktop\minij\minij\bin\Debug\CommandLine.xml
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\System.IO.Compression.ZipFile.dll

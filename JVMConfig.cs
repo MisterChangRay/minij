@@ -17,8 +17,9 @@ namespace minij
         public string cp { get; set; }
         [Option(longName:"classpath", Required = false, HelpText = "set classpath")]
         public string classpath { get; set; }
-        [Option(longName:"jrehome", Required = false, HelpText = "set jre home dir")]
-        public string jrehome { get; set; }
+
+        [Option(longName: "Xjre", Required = false, HelpText = "set jre home dir")]
+        public string Xjre { get; set; }
 
         [Option(longName: "mainClass", Required = false, HelpText = "set main class")]
         public string mainClass { get; set; }
