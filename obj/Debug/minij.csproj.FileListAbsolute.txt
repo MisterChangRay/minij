@@ -1,0 +1,7 @@
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\minij.exe.config
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\minij.exe
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\minij.pdb
+C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.exe
+C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.pdb
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\CommandLine.dll
+C:\Users\Mrui\Desktop\minij\minij\bin\Debug\CommandLine.xml
