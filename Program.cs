@@ -11,6 +11,7 @@ using CommandLine;
 using System.Collections.Generic;
 using System.Collections;
 using minij.classpath;
+using minij.classfile;
 
 namespace minij
 {
@@ -31,6 +32,9 @@ namespace minij
             Classpath c = new Classpath();
             c.init(JVMConfig.config);
             byte[] res = c.read(JVMConfig.config.mainClass);
+            ClassFile cf = new ClassFile(res);
+            cf.parse();
+            
 
 
 

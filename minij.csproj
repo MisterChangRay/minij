@@ -68,6 +68,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classfile\AccessFlags.cs" />
+    <Compile Include="classfile\attributes\AttrDeprecated.cs" />
+    <Compile Include="classfile\attributes\AttrLocalVariableTypeTable.cs" />
+    <Compile Include="classfile\attributes\AttrLocalVariableTable.cs" />
+    <Compile Include="classfile\attributes\AttrLineNumberTable.cs" />
+    <Compile Include="classfile\attributes\AttrSourceFile.cs" />
+    <Compile Include="classfile\attributes\AttrExceptions.cs" />
+    <Compile Include="classfile\attributes\AttrSynthetic.cs" />
+    <Compile Include="classfile\attributes\AttrCode.cs" />
+    <Compile Include="classfile\attributes\AttrConstantValue.cs" />
+    <Compile Include="classfile\attributes\Attribute.cs" />
+    <Compile Include="classfile\constant\Constant.cs" />
+    <Compile Include="classfile\ExceptionTable.cs" />
+    <Compile Include="classfile\FieldAndMethodInfo.cs" />
+    <Compile Include="classfile\ClassFile.cs" />
+    <Compile Include="classfile\ClassReader.cs" />
+    <Compile Include="classfile\BaseInfo.cs" />
+    <Compile Include="classfile\constant\CONSTANT_InvokeDynamic_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_MethodType_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_MethodHandle_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Utf8_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_NameAndType_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Float_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Double_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Long_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_InterfaceMethodref_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Integer_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_String_info .cs" />
+    <Compile Include="classfile\constant\CONSTANT_Methodref_info.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Fieldref.cs" />
+    <Compile Include="classfile\constant\CONSTANT_Class.cs" />
     <Compile Include="classpath\Classpath.cs" />
     <Compile Include="classpath\DirReader.cs" />
     <Compile Include="classpath\CombineReader.cs" />
