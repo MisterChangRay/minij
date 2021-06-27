@@ -5,6 +5,8 @@
 这是学习java虚拟机后的练习。
 
 根据《Java虚拟机规范》第8版编写;
+参考文档:
+https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.1
 
 ## 演示
 下载发布版本
