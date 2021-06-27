@@ -7,8 +7,8 @@
 根据《Java虚拟机规范》第8版编写;
 
 ## 演示
-编译以下源码;
-通过 javac 编译后即可执行 `myjvm Hello`即可观察效果:
+下载发布版本
+通过 javac 编译后即可执行 `minij.exe Hello`即可观察效果:
 ```java
 // 1
 public class Hello {
