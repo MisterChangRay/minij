@@ -104,14 +104,66 @@
     <Compile Include="classpath\CombineReader.cs" />
     <Compile Include="classpath\ZipReader.cs" />
     <Compile Include="classpath\Reader.cs" />
+    <Compile Include="instructions\comp\Lcmp.cs" />
+    <Compile Include="instructions\comp\Fcmpl.cs" />
+    <Compile Include="instructions\comp\Fcmpg.cs" />
+    <Compile Include="instructions\comp\Dcmpl.cs" />
+    <Compile Include="instructions\comp\Dcmpg.cs" />
+    <Compile Include="instructions\consts\Sipush.cs" />
+    <Compile Include="instructions\consts\Bipush.cs" />
+    <Compile Include="instructions\consts\Consts.cs" />
+    <Compile Include="instructions\control\Force.cs" />
+    <Compile Include="instructions\control\Switch.cs" />
+    <Compile Include="instructions\control\If.cs" />
+    <Compile Include="instructions\convert\F2x.cs" />
+    <Compile Include="instructions\convert\D2x.cs" />
+    <Compile Include="instructions\convert\L2x.cs" />
+    <Compile Include="instructions\convert\I2x.cs" />
+    <Compile Include="instructions\Factory.cs" />
+    <Compile Include="instructions\Instruction.cs" />
+    <Compile Include="instructions\invocation\Return.cs" />
+    <Compile Include="instructions\load\Load.cs" />
+    <Compile Include="instructions\math\Xor.cs" />
+    <Compile Include="instructions\math\Or.cs" />
+    <Compile Include="instructions\math\Rem.cs" />
+    <Compile Include="instructions\math\Div.cs" />
+    <Compile Include="instructions\math\Mul.cs" />
+    <Compile Include="instructions\math\Neg.cs" />
+    <Compile Include="instructions\math\And.cs" />
+    <Compile Include="instructions\math\Ushr.cs" />
+    <Compile Include="instructions\math\Shr.cs" />
+    <Compile Include="instructions\math\Shl.cs" />
+    <Compile Include="instructions\math\Sub.cs" />
+    <Compile Include="instructions\math\Add.cs" />
+    <Compile Include="instructions\stack\Swap.cs" />
+    <Compile Include="instructions\stack\Dup.cs" />
+    <Compile Include="instructions\stack\Pop.cs" />
+    <Compile Include="instructions\store\Store.cs" />
+    <Compile Include="Interpreter.cs" />
     <Compile Include="JVMConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rtda\CodeReader.cs" />
+    <Compile Include="rtda\heap\Field.cs" />
+    <Compile Include="rtda\heap\ClassLoader.cs" />
+    <Compile Include="rtda\heap\Fieldref.cs" />
+    <Compile Include="rtda\heap\Method.cs" />
+    <Compile Include="rtda\heap\Methodref.cs" />
+    <Compile Include="rtda\heap\Class.cs" />
+    <Compile Include="rtda\heap\StringPool.cs" />
+    <Compile Include="rtda\LocalVars.cs" />
+    <Compile Include="rtda\OperandStack.cs" />
+    <Compile Include="rtda\Frame.cs" />
+    <Compile Include="rtda\heap\JObject.cs" />
+    <Compile Include="rtda\FrameStack.cs" />
+    <Compile Include="rtda\Thread.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="native\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

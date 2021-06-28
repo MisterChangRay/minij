@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Collections;
 using minij.classpath;
 using minij.classfile;
+using minij.rtda;
+using minij.rtda.heap;
 
 namespace minij
 {
@@ -27,20 +29,29 @@ namespace minij
             }
             initArgs(JVMConfig.config);
 
-            
+            initJVM();
+            bootJVM();
+		}
+
+        private static void bootJVM()
+        {
 
             Classpath c = new Classpath();
             c.init(JVMConfig.config);
-            byte[] res = c.read(JVMConfig.config.mainClass);
-            ClassFile cf = new ClassFile(res);
-            cf.parse();
-            
 
+            ClassLoader loader = new ClassLoader(c);
 
+            Class clz = loader.load(JVMConfig.config.mainClass);
+            Method method = clz.getMethod("main", "", true);
+            Interpreter inter = new Interpreter();
+            inter.start(method);
 
-            Console.WriteLine(BitConverter.ToString(res));
-            Console.ReadKey(true);
-		}
+        }
+
+        private static void initJVM()
+        {
+            throw new NotImplementedException();
+        }
 
         private static void initArgs(JVMConfig config)
         {
