@@ -12,10 +12,10 @@ namespace minij.instructions.control
 {
     class IFEQ : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 == val) {
@@ -27,10 +27,10 @@ namespace minij.instructions.control
 
     class IFNE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 != val)
@@ -43,10 +43,10 @@ namespace minij.instructions.control
 
     class IFLT : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 > val)
@@ -59,10 +59,10 @@ namespace minij.instructions.control
 
     class IFLE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 >= val)
@@ -76,10 +76,10 @@ namespace minij.instructions.control
 
     class IFGT : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 < val)
@@ -92,10 +92,10 @@ namespace minij.instructions.control
 
     class IFGE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             if (0 <= val)
@@ -108,10 +108,10 @@ namespace minij.instructions.control
 
     class IFNULL : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popRef();
             if (val == null)
@@ -124,10 +124,10 @@ namespace minij.instructions.control
 
     class IFNONNULL : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popRef();
             if (val != null)
@@ -140,10 +140,10 @@ namespace minij.instructions.control
 
     class IF_ICMPEQ : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -157,10 +157,10 @@ namespace minij.instructions.control
 
     class IF_ICMPNE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -176,11 +176,11 @@ namespace minij.instructions.control
 
     class IF_ICMPLT : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -195,10 +195,10 @@ namespace minij.instructions.control
 
     class IF_ICMPLE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -213,10 +213,10 @@ namespace minij.instructions.control
 
     class IF_ICMPGT : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -231,10 +231,10 @@ namespace minij.instructions.control
 
     class IF_ICMPGE : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popInt();
             var val1 = frame.operandStack.popInt();
@@ -249,10 +249,10 @@ namespace minij.instructions.control
 
     class IF_ACMPEQ : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popRef();
             var val1 = frame.operandStack.popRef();
@@ -267,10 +267,10 @@ namespace minij.instructions.control
 
     class IF_ACMPNEQ : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             var val2 = frame.operandStack.popRef();
             var val1 = frame.operandStack.popRef();

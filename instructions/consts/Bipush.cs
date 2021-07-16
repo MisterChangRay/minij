@@ -10,11 +10,11 @@ namespace minij.instructions.math
 {
     class BIPUSH : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public override void  feachOperationCode(CodeReader reader)
         {
             this.index = reader.read();
         }
-        public void execute(Frame frame)
+        public override void  execute(Frame frame)
         {
             frame.operandStack.pushInt(this.index);
         }

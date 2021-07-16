@@ -25,10 +25,9 @@ namespace minij.classfile.constant
             this.hightBytes = classReader.readUInt32();
             this.lowBytes = classReader.readUInt32();
 
-            ulong va = Convert.ToUInt64(this.hightBytes) << 32;
+            ulong va =((ulong)this.hightBytes) << 32;
             va = va | lowBytes;
-            long va2 = Convert.ToInt64(va);
-            this.val = va2;
+            this.val = unchecked((long)va);
 
             return this;
         }

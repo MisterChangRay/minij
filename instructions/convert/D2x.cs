@@ -12,8 +12,8 @@ namespace minij.instructions.math
 {
     class D2I : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {}
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) {}
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popDouble();
             frame.operandStack.pushInt((int)val);
@@ -23,8 +23,8 @@ namespace minij.instructions.math
 
     class D2L : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popDouble();
             frame.operandStack.pushLong((long)val);
@@ -34,8 +34,8 @@ namespace minij.instructions.math
 
     class D2F : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popDouble();
             frame.operandStack.pushFloat((float)val);

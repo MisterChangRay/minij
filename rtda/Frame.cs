@@ -1,4 +1,5 @@
 ﻿using minij.classfile;
+using minij.rtda.heap;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace minij.rtda
         public OperandStack operandStack;
         public LocalVars localVars;
         public Thread thread;
+        public Method method;
 
 
         public Frame() {
@@ -31,9 +33,9 @@ namespace minij.rtda
 
         }
 
-        internal void newBranch(int index)
+        public void  newBranch(int index)
         {
-            throw new NotImplementedException();
+            this.nextPc = this.nextPc + index;
         }
     }
 }

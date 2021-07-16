@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class DCMPG : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public override   void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public override   void  execute(Frame frame)
         {
             var v2 = frame.operandStack.popDouble();
             var v1 = frame.operandStack.popDouble();

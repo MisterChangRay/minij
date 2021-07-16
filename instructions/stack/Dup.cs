@@ -10,8 +10,8 @@ namespace minij.instructions.math
 {
     class DUP : Instruction
     {
-        public void feachOperationCode(CodeReader reader){}
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader){}
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             frame.operandStack.push(val1);
@@ -24,8 +24,8 @@ namespace minij.instructions.math
 
     class DUP_X1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader) { }
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();
@@ -40,8 +40,8 @@ namespace minij.instructions.math
 
     class DUP_X2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader) { }
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();
@@ -58,8 +58,8 @@ namespace minij.instructions.math
 
     class DUP2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader) { }
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();
@@ -75,8 +75,8 @@ namespace minij.instructions.math
 
     class DUP2_X1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader) { }
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();
@@ -93,8 +93,8 @@ namespace minij.instructions.math
 
     class DUP2_X2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader) { }
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();

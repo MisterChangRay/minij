@@ -19,7 +19,7 @@ namespace minij
 {
 	class Program
 	{
-		public static void Main(string[] args)
+		public static   void  Main(string[] args)
 		{
 				
             parseArgs(args);
@@ -33,7 +33,7 @@ namespace minij
             bootJVM();
 		}
 
-        private static void bootJVM()
+        private static   void  bootJVM()
         {
 
             Classpath c = new Classpath();
@@ -42,18 +42,22 @@ namespace minij
             ClassLoader loader = new ClassLoader(c);
 
             Class clz = loader.load(JVMConfig.config.mainClass);
-            Method method = clz.getMethod("main", "", true);
+            Method method = clz.getMethod("main", "([Ljava/lang/String;)V", true);
+            if(null == method) {
+                Console.WriteLine("Not Found Main Method");
+                return;
+            }
             Interpreter inter = new Interpreter();
             inter.start(method);
 
         }
 
-        private static void initJVM()
+        private static   void  initJVM()
         {
-            throw new NotImplementedException();
+            // todo
         }
 
-        private static void initArgs(JVMConfig config)
+        private static   void  initArgs(JVMConfig config)
         {
        
 
@@ -75,11 +79,11 @@ namespace minij
             }
         }
 
-        static void HandleParseError(IEnumerable<Error> errs)
+        static   void  HandleParseError(IEnumerable<Error> errs)
         {
             //handle errors
         }
-        public static void parseArgs(string[] args) {
+        public static   void  parseArgs(string[] args) {
             CommandLine.Parser.Default.ParseArguments<JVMConfig>(args).WithParsed(o =>
             {
                 JVMConfig.config = o;

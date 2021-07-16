@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class INEG : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popInt();
             var val3 = 0 - val1;
@@ -24,10 +24,10 @@ namespace minij.instructions.math
 
     class LNEG : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popLong();
             var val3 = 0 - val1;
@@ -38,10 +38,10 @@ namespace minij.instructions.math
 
     class FNEG : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popFloat();
             var val3 = 0 - val1;
@@ -53,10 +53,10 @@ namespace minij.instructions.math
 
     class DNEG : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popDouble();
             var val3 = 0 - val1;

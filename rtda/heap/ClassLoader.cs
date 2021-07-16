@@ -1,4 +1,5 @@
-﻿using minij.classpath;
+﻿using minij.classfile;
+using minij.classpath;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,18 +33,26 @@ namespace minij.rtda.heap
             其他类则到路径去加载
             **/
         public Class load(string name) {
-            var res = cache[name];
-            if (res != null) {
-                return res;
+            if (cache.Keys.Contains(name)) {
+                var res = cache[name];
+                if (res != null)
+                {
+                    return res;
+                }
             }
+            
 
+            Class clz;
             if (name.StartsWith("[")) {
                 // 加载数组类
-               return loadArrayClz(name);
+                clz = loadArrayClz(name);
             } else {
                 // 加载非数组类
-               return loadNoneArrayClz(name);
+                clz = loadNoneArrayClz(name);
             }
+
+            cache[name] = clz;
+            return clz;
         }
 
         private Class loadNoneArrayClz(string name)
@@ -55,25 +64,54 @@ namespace minij.rtda.heap
             return loadObjectClz(name);
         }
 
+        // 加载普通对象类型
         private Class loadObjectClz(string name)
         {
-            throw new NotImplementedException();
+            var data = classpath.read(name);
+            ClassFile clzFile = new ClassFile(data);
+            clzFile.parse();
+
+            Class clz = new Class();
+            clz.loader = this;
+            clz.init(clzFile);
+            clz.initFieldsSolotId();
+            clz.initFinalVars();
+            return clz;
+
         }
 
+
+        // 加载原始类型
         private Class loadPrimitiveClz(string name)
         {
-            throw new NotImplementedException();
+            Class clz = new Class();
+            clz.name = name;
+            clz.accessFlags = new AccessFlags(0x0001);
+            clz.loader = this;
+            clz.superClazz = this.load("java.lang.Object");
+            clz.clzObj =  clz.newObject();
+
+            return clz; 
         }
 
+
+        // 加载数组类型
         private Class loadArrayClz(string name)
         {
-            throw new NotImplementedException();
+            Class clz = new Class();
+            clz.name = name;
+            clz.accessFlags = new AccessFlags(0x0001);
+            clz.loader = this;
+            clz.superClazz = this.load("java.lang.Object");
+            clz.clzObj = clz.newObject();
+
+            return clz;
         }
 
 
         // 判断是否为原始类型
         public static bool isPrimitive(string name) {
-            return primitive[name];
+            return primitive.ContainsKey(name);
         }
     }
 }

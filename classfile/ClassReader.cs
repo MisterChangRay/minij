@@ -27,7 +27,7 @@ namespace minij.classfile
 
         public UInt16 readUInt16()
         {
-            return BitConverter.ToUInt16( this.readBytes(2, false), 0);
+            return BitConverter.ToUInt16(this.readBytes(2, false), 0);
         }
 
         public UInt16[] readUInt16s(int len)
@@ -36,7 +36,7 @@ namespace minij.classfile
 
             for (int i = 0; i < len; i++)
             {
-                res[i] = reader.ReadUInt16();
+                res[i] = this.readUInt16();
             }
 
             return res;

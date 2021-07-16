@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class ICONST_M1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(-1);
         }
@@ -22,11 +22,11 @@ namespace minij.instructions.math
 
     class ICONST_0 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(0);
         }
@@ -35,11 +35,11 @@ namespace minij.instructions.math
 
     class ICONST_1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
 
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(1);
         }
@@ -48,11 +48,11 @@ namespace minij.instructions.math
 
     class ICONST_2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
 
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(2);
         }
@@ -61,11 +61,11 @@ namespace minij.instructions.math
 
     class ICONST_3 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
 
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(3);
         }
@@ -74,11 +74,11 @@ namespace minij.instructions.math
 
     class ICONST_4 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
 
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(4);
         }
@@ -87,11 +87,11 @@ namespace minij.instructions.math
 
     class ICONST_5 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
 
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushInt(5);
         }
@@ -104,10 +104,10 @@ namespace minij.instructions.math
 
     class LCONST_0 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushLong(0);
         }
@@ -116,10 +116,10 @@ namespace minij.instructions.math
 
     class LCONST_1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushLong(1);
         }
@@ -132,10 +132,10 @@ namespace minij.instructions.math
 
     class FCONST_0 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushFloat(0);
         }
@@ -144,10 +144,10 @@ namespace minij.instructions.math
 
     class FCONST_1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushFloat(1);
         }
@@ -156,10 +156,10 @@ namespace minij.instructions.math
 
     class FCONST_2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushFloat(2);
         }
@@ -170,10 +170,10 @@ namespace minij.instructions.math
 
     class DCONST_0 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushDouble(0.0);
         }
@@ -181,10 +181,10 @@ namespace minij.instructions.math
     }
     class DCONST_1 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushDouble(1.0);
         }
@@ -194,10 +194,10 @@ namespace minij.instructions.math
  
     class ACONST_NULL : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
             frame.operandStack.pushRef(null);
         }

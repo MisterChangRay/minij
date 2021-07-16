@@ -15,7 +15,7 @@ namespace minij.classpath
         Reader userClassPath = null;
         char sp = Path.DirectorySeparatorChar;
 
-        public void init(JVMConfig config) {
+        public   void  init(JVMConfig config) {
             string jre = getJrePath();
             string jrelib = Path.Combine(jre, "lib", "*");
             this.bootClassPath = CombineReader.build(jrelib);

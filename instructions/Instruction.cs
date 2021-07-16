@@ -15,7 +15,7 @@ namespace minij.instructions
         public int index3;
 
 
-        public void feachOperationCode(CodeReader reader) { }
-         public void execute(Frame frame) { }
+        public virtual  void  feachOperationCode(CodeReader reader) { }
+        public virtual  void  execute(Frame frame) { }
     }
 }

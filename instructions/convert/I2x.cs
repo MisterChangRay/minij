@@ -12,8 +12,8 @@ namespace minij.instructions.math
 {
     class I2B : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {}
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) {}
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushInt((byte)val);
@@ -23,8 +23,8 @@ namespace minij.instructions.math
 
     class I2C : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushInt((char)val);
@@ -34,8 +34,8 @@ namespace minij.instructions.math
 
     class I2S : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushInt((UInt16)val);
@@ -45,8 +45,8 @@ namespace minij.instructions.math
 
     class I2L : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushLong((long)val);
@@ -56,8 +56,8 @@ namespace minij.instructions.math
 
     class I2F : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushFloat((float)val);
@@ -67,8 +67,8 @@ namespace minij.instructions.math
 
     class I2D : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var val = frame.operandStack.popInt();
             frame.operandStack.pushDouble((double)val);

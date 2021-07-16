@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class IXOR : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popInt();
             var val2 = frame.operandStack.popInt();
@@ -25,10 +25,10 @@ namespace minij.instructions.math
 
     class LXOR : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popLong();
             var val2 = frame.operandStack.popLong();

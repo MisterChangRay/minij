@@ -15,7 +15,7 @@ namespace minij.rtda
             stcks = new Frame[i];
         }
 
-        public void push(Frame f)
+        public   void  push(Frame f)
         {
             stcks[index] = f;
             index++;

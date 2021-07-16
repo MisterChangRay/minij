@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using minij.rtda.heap;
+using minij.classfile;
+using minij.classfile.attributes;
 
 namespace minij.rtda
 {
@@ -17,18 +19,24 @@ namespace minij.rtda
             frames = new FrameStack(1024);
         }
 
-        public Frame newFrame() {
+
+        public Frame newFrame(Method method)
+        {
+            AttrCode code = (AttrCode) method.getAttribute("Code");
+            CodeReader codeReader = new CodeReader(code.code);
             Frame f = new Frame();
+            f.method = method;
+            f.reader = codeReader;
+
+            f.operandStack = new OperandStack(code.max_stack);
+            f.localVars = new LocalVars(code.max_locals);
+            f.thread = this;
+
             return f;
         }
 
-        internal Frame newFrame(Method method)
-        {
-            throw new NotImplementedException();
-        }
 
-
-        public void pushFrame(Frame f)
+        public   void  pushFrame(Frame f)
         {
             frames.push(f);
         }

@@ -17,6 +17,15 @@ namespace minij.instructions
                 case 0x11:
                     return new SIPUSH();
 
+                case 0x12:
+                    return new LDC();
+                case 0x13:
+                    return new LDC_W();
+                case 0x14:
+                    return new LDC2_W();
+                
+
+
                 case 0x60:
                     return new IADD();
                 case 0x61:

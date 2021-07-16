@@ -20,7 +20,7 @@ namespace minij.rtda
             localVars = new object[i];
         }
 
-        public void setInt(int index, int val)
+        public   void  setInt(int index, int val)
         {
             localVars[index] = val;
         }
@@ -30,7 +30,7 @@ namespace minij.rtda
             return (int)localVars[index];
         }
 
-        public void setLong(int index, long i)
+        public   void  setLong(int index, long i)
         {
             localVars[index] = i;
         }
@@ -40,7 +40,7 @@ namespace minij.rtda
             return  (long)localVars[index];
         }
 
-        public void setFloat(int index, float i)
+        public   void  setFloat(int index, float i)
         {
             localVars[index] = i;
         }
@@ -49,7 +49,7 @@ namespace minij.rtda
             return (float)localVars[index];
         }
 
-        public void setDouble(int index, double i)
+        public   void  setDouble(int index, double i)
         {
             localVars[index] = i;
         }
@@ -58,7 +58,7 @@ namespace minij.rtda
             return (double)localVars[index];
         }
 
-        public void setRef(int index, JObject i)
+        public   void  setRef(int index, JObject i)
         {
             localVars[index] = i;
         }

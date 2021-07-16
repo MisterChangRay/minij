@@ -10,8 +10,8 @@ namespace minij.instructions.math
 {
     class  RETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader){}
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader){}
+        public  override void   execute(Frame frame)
         {
             frame.thread.popFrame();
         }
@@ -21,8 +21,8 @@ namespace minij.instructions.math
 
     class IRETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader){}
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader){}
+        public  override void   execute(Frame frame)
         {
             var i = frame.operandStack.popInt();
             var preFrame = frame.thread.next();
@@ -34,8 +34,8 @@ namespace minij.instructions.math
 
     class LRETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var i = frame.operandStack.popLong();
             var preFrame = frame.thread.next();
@@ -47,8 +47,8 @@ namespace minij.instructions.math
 
     class FRETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var i = frame.operandStack.popFloat();
             var preFrame = frame.thread.next();
@@ -60,8 +60,8 @@ namespace minij.instructions.math
 
     class DRETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var i = frame.operandStack.popDouble();
             var preFrame = frame.thread.next();
@@ -73,8 +73,8 @@ namespace minij.instructions.math
 
     class ARETURN : Instruction
     {
-        public void feachOperationCode(CodeReader reader) { }
-        public void execute(Frame frame)
+        public  override void   feachOperationCode(CodeReader reader) { }
+        public  override void   execute(Frame frame)
         {
             var i = frame.operandStack.popRef();
             var preFrame = frame.thread.next();

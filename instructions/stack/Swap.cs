@@ -10,8 +10,8 @@ namespace minij.instructions.math
 {
     class SWAP : Instruction
     {
-        public void feachOperationCode(CodeReader reader){}
-        public void execute(Frame frame)
+        public  override void  feachOperationCode(CodeReader reader){}
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.pop();
             var val2 = frame.operandStack.pop();

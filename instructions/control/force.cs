@@ -11,10 +11,10 @@ namespace minij.instructions.control
 {
     class GOTO : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+        public override void  feachOperationCode(CodeReader reader) {
+            this.index = unchecked( (Int16)reader.readUint16()) ;
         }
-        public void execute(Frame frame)
+        public override void  execute(Frame frame)
         {
             frame.newBranch(this.index);
         }
@@ -24,11 +24,11 @@ namespace minij.instructions.control
 
     class GOTO_W : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public override void  feachOperationCode(CodeReader reader)
         {
             this.index = reader.readUint32();
         }
-        public void execute(Frame frame)
+        public override void  execute(Frame frame)
         {
             frame.newBranch(this.index);
         }

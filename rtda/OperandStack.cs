@@ -27,14 +27,14 @@ namespace minij.rtda
         }
 
 
-        public void push(Object obj)
+        public   void  push(Object obj)
         {
             stcks[index]= obj;
             index += 1;
         }
 
 
-        public void pushInt(int i)
+        public   void  pushInt(int i)
         {
             stcks[index] = i;
             index += 1;
@@ -46,7 +46,7 @@ namespace minij.rtda
             return (int) stcks[index];
         }
 
-        public void pushLong(long i)
+        public   void  pushLong(long i)
         {
             stcks[index] = i;
             index += 1;
@@ -58,7 +58,7 @@ namespace minij.rtda
             return (long)stcks[index];
         }
 
-        public void pushFloat(float i)
+        public   void  pushFloat(float i)
         {
             stcks[index] = i;
             index += 1;
@@ -69,7 +69,7 @@ namespace minij.rtda
             return (float)stcks[index];
         }
 
-        public void pushDouble(double i)
+        public   void  pushDouble(double i)
         {
             stcks[index] = i;
             index += 1;
@@ -80,7 +80,7 @@ namespace minij.rtda
             return (double)stcks[index];
         }
 
-        public void pushRef(JObject i)
+        public   void  pushRef(JObject i)
         {
             stcks[index] = i;
             index += 1;

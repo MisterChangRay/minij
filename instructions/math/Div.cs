@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class IDIV : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popInt();
             var val2 = frame.operandStack.popInt();
@@ -25,10 +25,10 @@ namespace minij.instructions.math
 
     class LDIV : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popLong();
             var val2 = frame.operandStack.popLong();
@@ -40,10 +40,10 @@ namespace minij.instructions.math
 
     class FDIV : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popFloat();
             var val2 = frame.operandStack.popFloat();
@@ -56,10 +56,10 @@ namespace minij.instructions.math
 
     class DDIV : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             var val1 = frame.operandStack.popDouble();
             var val2 = frame.operandStack.popDouble();

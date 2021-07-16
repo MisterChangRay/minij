@@ -10,15 +10,11 @@ namespace minij.instructions.math
 {
     class SIPUSH : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public override void  feachOperationCode(CodeReader reader)
         {
-            byte b1 = reader.read();
-            byte b2 = reader.read();
-            int c = ((int)b1) << 8 | (int)b2;
-
-            this.index = c;
+            this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public override void  execute(Frame frame)
         {
             frame.operandStack.pushInt(this.index);
         }

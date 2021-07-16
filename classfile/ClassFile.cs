@@ -57,6 +57,13 @@ namespace minij.classfile
             this.reader = t;
         }
 
+        public string getClassName(int index) {
+            Constant c = this.cpInfo[index];
+            CONSTANT_Class uf = (CONSTANT_Class)c;
+            
+            return getString(uf.nameIndex);
+        }
+
         // 解析类文件
         public ClassFile parse()
         {
@@ -99,6 +106,9 @@ namespace minij.classfile
             return parseMethods();
         }
 
+        /**
+        get utf8 val
+            **/
         public String getString(int cpIndex) {
             Constant c = this.cpInfo[cpIndex];
             CONSTANT_Utf8_info uf = (CONSTANT_Utf8_info)c;
@@ -119,7 +129,12 @@ namespace minij.classfile
             for (int i = 1; i < len; i++)
             {
                 byte tag = reader.readUint8();
-                c.Add(parseConstantPool(tag));
+                var t = parseConstantPool(tag);
+                c.Add(t);
+                if (t is CONSTANT_Double_info || t is CONSTANT_Long_info) {
+                    i++;
+                    c.Add(null);
+                }
             }
 
             this.cpInfo = c;
@@ -256,12 +271,13 @@ namespace minij.classfile
                     attr = new AttrLocalVariableTable();
                     break;
                 default:
-                    Console.WriteLine("unparse attr:" + attrName);
+                    //Console.WriteLine("unparse attr:" + attrName);
                     reader.readBytes(Convert.ToInt32(attribute_length), true);
                     break;
             }
             if (attr != null) {
                 attr.parse(reader, this);
+                attr.name = attrName;
                 attr.attribute_name_index = attribute_name_index;
                 attr.attribute_length = attribute_length;
             }

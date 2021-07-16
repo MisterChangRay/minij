@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class POP : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             frame.operandStack.pop();
         }
@@ -22,10 +22,10 @@ namespace minij.instructions.math
 
     class POP2 : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
             frame.operandStack.pop();
             frame.operandStack.pop();

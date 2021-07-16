@@ -12,7 +12,7 @@ namespace minij
 {
     class Interpreter
     {
-        public void start(Method  method) {
+        public   void  start(Method  method) {
             Thread thread = new Thread();
             Frame minFrame = thread.newFrame(method);
             thread.pushFrame(minFrame);
@@ -32,8 +32,8 @@ namespace minij
                 if (thread.isEmpty()) {
                     break;
                 }
+               
             }
-
         }
     }
 }

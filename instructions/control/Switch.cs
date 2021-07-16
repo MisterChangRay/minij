@@ -11,10 +11,10 @@ namespace minij.instructions.control
 {
     class TABLESWITCH : Instruction
     {
-        public void feachOperationCode(CodeReader reader) {
+        public  override void   feachOperationCode(CodeReader reader) {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
           
         }
@@ -24,11 +24,11 @@ namespace minij.instructions.control
 
     class LOOKUPSWITCH : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public  override void   feachOperationCode(CodeReader reader)
         {
             this.index = reader.readUint16();
         }
-        public void execute(Frame frame)
+        public  override void   execute(Frame frame)
         {
 
         }

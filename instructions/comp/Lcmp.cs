@@ -10,10 +10,10 @@ namespace minij.instructions.math
 {
     class LCMP : Instruction
     {
-        public void feachOperationCode(CodeReader reader)
+        public override void  feachOperationCode(CodeReader reader)
         {
         }
-        public void execute(Frame frame)
+        public override void  execute(Frame frame)
         {
             var v2 = frame.operandStack.popLong();
             var v1 = frame.operandStack.popLong();

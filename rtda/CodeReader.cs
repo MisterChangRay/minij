@@ -48,7 +48,7 @@ namespace minij.classfile
             return (int) reader.BaseStream.Position;
         }
 
-        public void reset(int i)
+        public   void  reset(int i)
         {
             reader.BaseStream.Position = i;
         }
