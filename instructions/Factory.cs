@@ -26,6 +26,9 @@ namespace minij.instructions
 
                 case 0xb8:
                     return new Invokestatic();
+                case 0xb6:
+                    return new Invokevirtual();
+
                 case 0xb2:
                     return new GET_STATIC();
 

@@ -1,4 +1,5 @@
 ﻿using minij.classfile;
+using minij.classfile.attributes;
 using minij.classfile.constant;
 using minij.rtda.heap.constantpool;
 using System;
@@ -233,6 +234,7 @@ namespace minij.rtda.heap
                 f.descriptor_index = cf.descriptor_index;
 
                 f.attrs = cf.attrs;
+                f.clazz = this;
 
                 this.fields.Add(f);
             }
@@ -407,7 +409,36 @@ namespace minij.rtda.heap
 
         public   void  initFinalVars()
         {
+            this.fields.ForEach(f =>
+            {
+                if (f.accessFlags.ACC_FINAL() && f.accessFlags.ACC_STATIC()) {
+                    // only init static and final field
+                    AttrConstantValue v = (AttrConstantValue) f.getAttr("ConstantValue");
+                    this.doInitVal(f, v);
+                }
+            });
+
         }
 
+        private void doInitVal(Field f, AttrConstantValue v)
+        {
+            if (v == null) return;
+
+            var tmp = f.clazz.cpInfo[v.constantvalue_index];
+            if (tmp is constantpool.Double)
+            {
+                f.clazz.staticVars[f.slotId] = ((constantpool.Double)tmp).val;
+            } else  if (tmp is Float)
+            {
+                f.clazz.staticVars[f.slotId] = ((constantpool.Float)tmp).val;
+            } else if (tmp is Integer)
+            {
+                f.clazz.staticVars[f.slotId] = ((constantpool.Integer)tmp).val;
+            }
+            else if (tmp is Long)
+            {
+                f.clazz.staticVars[f.slotId] = ((constantpool.Long)tmp).val;
+            }
+        }
     }
 }

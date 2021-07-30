@@ -21,13 +21,17 @@ namespace minij
                 Frame frame = thread.topFrame();
                 CodeReader reader = frame.reader;
                 reader.reset(frame.nextPc);
+                frame.thread.pc = frame.nextPc;
 
                 byte code = frame.reader.read();
                 Instruction instruction = Factory.build(code);
+                if (JVMConfig.config.verbose) {
+                    Console.WriteLine("PC: {0}, execute: {1}", frame.nextPc, instruction);
+                }
                 instruction.feachOperationCode(frame.reader);
-                instruction.execute(frame);
-
                 frame.nextPc = reader.pc();
+
+                instruction.execute(frame);
 
                 if (thread.isEmpty()) {
                     break;

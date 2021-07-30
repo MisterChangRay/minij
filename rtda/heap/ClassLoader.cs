@@ -52,6 +52,7 @@ namespace minij.rtda.heap
             }
 
             cache[name] = clz;
+
             return clz;
         }
 

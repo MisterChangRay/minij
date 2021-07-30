@@ -12,6 +12,7 @@ namespace minij.rtda
     class Thread
     {
         private FrameStack frames;
+        public int pc;
 
 
 

@@ -27,5 +27,18 @@ namespace minij.rtda.heap
         public bool isDoubleOrLong() {
             return this.descriptor == "D" || this.descriptor == "J";
         }
+
+        public minij.classfile.attributes.Attribute getAttr(string v)
+        {
+            minij.classfile.attributes.Attribute res = null;
+            this.attrs.ForEach(item =>
+            {
+                if (res == null && item.name == v)
+                {
+                    res = item;
+                }
+            });
+            return res;
+        }
     }
 }

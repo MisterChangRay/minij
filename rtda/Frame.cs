@@ -38,7 +38,7 @@ namespace minij.rtda
 
         public void  newBranch(int index)
         {
-            this.nextPc = this.nextPc + index;
+            this.nextPc = this.thread.pc + index;
         }
 
         public void doInvoke(Method method)

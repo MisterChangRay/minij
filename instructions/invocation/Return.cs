@@ -27,6 +27,8 @@ namespace minij.instructions.math
             var i = frame.operandStack.popInt();
             var preFrame = frame.thread.next();
             preFrame.operandStack.push(i);
+
+            frame.thread.popFrame();
         }
 
     }
@@ -40,6 +42,8 @@ namespace minij.instructions.math
             var i = frame.operandStack.popLong();
             var preFrame = frame.thread.next();
             preFrame.operandStack.pushLong(i);
+
+            frame.thread.popFrame();
         }
 
     }
@@ -53,6 +57,8 @@ namespace minij.instructions.math
             var i = frame.operandStack.popFloat();
             var preFrame = frame.thread.next();
             preFrame.operandStack.pushFloat(i);
+
+            frame.thread.popFrame();
         }
 
     }
@@ -66,6 +72,8 @@ namespace minij.instructions.math
             var i = frame.operandStack.popDouble();
             var preFrame = frame.thread.next();
             preFrame.operandStack.pushDouble(i);
+
+            frame.thread.popFrame();
         }
 
     }
@@ -79,6 +87,7 @@ namespace minij.instructions.math
             var i = frame.operandStack.popRef();
             var preFrame = frame.thread.next();
             preFrame.operandStack.pushRef(i);
+            frame.thread.popFrame();
         }
 
     }
