@@ -8,6 +8,6 @@ namespace minij.rtda.heap.constantpool
 {
     abstract class ConstantPool
     {
-        public virtual   void  reslove() { }
+        public Class cpClz;
     }
 }

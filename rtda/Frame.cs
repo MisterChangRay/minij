@@ -1,4 +1,5 @@
 ﻿using minij.classfile;
+using minij.classfile.attributes;
 using minij.rtda.heap;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace minij.rtda
         public int nextPc;
         public CodeReader reader;
         public OperandStack operandStack;
+
+
         public LocalVars localVars;
         public Thread thread;
         public Method method;
@@ -37,5 +40,36 @@ namespace minij.rtda
         {
             this.nextPc = this.nextPc + index;
         }
+
+        public void doInvoke(Method method)
+        {
+            Frame newFrame = buildFrame(this.thread, method);
+            copyArgs(this, newFrame);
+            this.thread.pushFrame(newFrame);
+        }
+
+        private void copyArgs(Frame frame, Frame newFrame)
+        {
+            
+
+
+        }
+
+        public static Frame buildFrame(Thread thread, Method method)
+        {
+            AttrCode code = (AttrCode)method.getAttribute("Code");
+            CodeReader codeReader = new CodeReader(code.code);
+            Frame f = new Frame();
+            f.method = method;
+            f.reader = codeReader;
+
+            f.operandStack = new OperandStack(code.max_stack);
+            f.localVars = new LocalVars(code.max_locals);
+            f.thread = thread;
+
+            return f;
+        }
+
+
     }
 }

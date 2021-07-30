@@ -19,5 +19,13 @@ namespace minij.rtda.heap
         public UInt16 descriptor_index;
         public UInt16 attributes_count;
         public List<minij.classfile.attributes.Attribute> attrs;
+        public Class clazz;
+
+
+
+
+        public bool isDoubleOrLong() {
+            return this.descriptor == "D" || this.descriptor == "J";
+        }
     }
 }

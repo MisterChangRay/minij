@@ -58,6 +58,8 @@ namespace minij.classfile
         }
 
         public string getClassName(int index) {
+            if (0 == index) return null;
+
             Constant c = this.cpInfo[index];
             CONSTANT_Class uf = (CONSTANT_Class)c;
             

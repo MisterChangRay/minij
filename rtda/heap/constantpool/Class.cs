@@ -24,6 +24,9 @@ namespace minij.rtda.heap
         public string[] interfacesNames;
 
         public Class thisClazz;
+
+        
+
         public Class superClazz;
         public Class[] interfaces;
         public List<Field> fields;
@@ -33,7 +36,23 @@ namespace minij.rtda.heap
         public object[] staticVars;  // 静态变量
 
         public ClassLoader loader;
+        public int maxInstanceSlotId;
+        public int maxStaticSlotId;
 
+
+
+        public Field findField(string name, string descriptor)
+        {
+            Field res = null;
+            this.fields.ForEach(item =>
+            {
+                if (res == null && item.name == name && item.descriptor == descriptor )
+                {
+                    res = item;
+                }
+            });
+            return res;
+        }
 
         public Method getMethod(string name, string descriptor)
         {
@@ -64,29 +83,66 @@ namespace minij.rtda.heap
             return null;
         }
 
+        public Field getField(int solotId, bool isStatic)
+        {
+
+            for (int i = 0; i < this.fields.Count; i++)
+            {
+                var tmp = this.fields[i];
+                if (tmp.accessFlags.ACC_STATIC() == isStatic && solotId == tmp.slotId) {
+                    return tmp;
+                }
+
+            }
+            return null;
+
+        }
+
         public JObject newObject()
         {
             return JObject.newJObject(this);
         }
 
-        internal   void  initFieldsSolotId()
+        internal  void  initFieldsSolotId()
         {
             int staticId = 0, instantId = 0;
+
+            if (this.superClazz != null) {
+                instantId = this.superClazz.maxInstanceSlotId;
+            }
+
             foreach(var field in this.fields)
             {
                 if (field.accessFlags.ACC_STATIC())
                 {
                     field.slotId = staticId;
                     staticId += 1;
+
+                    if (field.isDoubleOrLong())
+                    {
+                        staticId += 1;
+
+                    }
                 }
                 else {
                     field.slotId = instantId;
                     instantId += 1;
+
+                    if (field.isDoubleOrLong())
+                    {
+                        instantId += 1;
+
+                    }
                 }
             }
+
+            this.maxInstanceSlotId = instantId;
+            this.maxStaticSlotId = staticId;
+
+            this.staticVars = new object[this.maxStaticSlotId];
         }
 
-        public   void  init(ClassFile clzFile)
+        public void  init(ClassFile clzFile)
         {
             this.magic = clzFile.magic;
             this.minorVersion = clzFile.minorVersion;
@@ -102,20 +158,49 @@ namespace minij.rtda.heap
             // 初始化字段
             this.copyFileds(clzFile);
 
+            // 初始化方法
             this.copyMethod(clzFile);
 
+            // 初始化父类和接口
+            this.copySuperClzAndInterface(clzFile);
+
+            this.resloveSuperClass();
+            this.resloveInterface();
+
+        }
+
+        private void copySuperClzAndInterface(ClassFile clzFile)
+        {
             this.superClazzName = clzFile.getClassName(clzFile.superClass);
-            // 初始化接口
             this.interfacesNames = new string[clzFile.interfaces.Length];
             for (int i = 0; i < clzFile.interfaces.Length; i++)
             {
                 this.interfacesNames[i] = clzFile.getClassName(clzFile.interfaces[i]);
             }
-
-
         }
 
-        private   void  copyMethod(ClassFile clzFile)
+
+        private void resloveInterface()
+        {
+
+            this.interfaces = new Class[this.interfacesNames.Length];
+            for (int i = 0; i < this.interfaces.Length; i++)
+            {
+                this.interfaces[i] = this.loader.load(this.interfacesNames[i]);
+            }
+        }
+
+        private void resloveSuperClass()
+        {
+            if (this.superClazzName.Equals("java/lang/Object"))
+            {
+                return;
+            }
+
+            this.superClazz = this.loader.load(this.superClazzName);
+        }
+
+        private  void  copyMethod(ClassFile clzFile)
         {
             this.methods = new List<Method>();
             foreach (var cm in clzFile.methods)
@@ -127,6 +212,8 @@ namespace minij.rtda.heap
 
                 m.attrs = cm.attrs;
                 m.clazz = this;
+
+                m.parseArgsAndReturn();
                 this.methods.Add(m);
             }
         }
@@ -261,10 +348,11 @@ namespace minij.rtda.heap
             var tmp = (CONSTANT_InterfaceMethodref_info)clzFile.cpInfo[i];
 
             InterfaceMethodref method = new InterfaceMethodref();
-            method.clazz = parseClassIndex(tmp.classIndex, clzFile);
+            method.clazzName = clzFile.getClassName(tmp.classIndex);
             method.nameAndType = parseNameAndTypeIndex(tmp.name_and_type_index, clzFile);
             method.name = method.nameAndType.name;
             method.descriptor = method.nameAndType.descriptor;
+            method.cpClz = this;
 
             return method;
         }
@@ -273,11 +361,12 @@ namespace minij.rtda.heap
         {
             var tmp = (CONSTANT_Methodref_info) clzFile.cpInfo[i];
 
-            Method method = new Method();
-            method.clazz = parseClassIndex(tmp.classIndex, clzFile);
+            Methodref method = new Methodref();
+            method.clazzName = clzFile.getClassName(tmp.classIndex);
             method.nameAndType = parseNameAndTypeIndex(tmp.name_and_type_index, clzFile);
             method.name = method.nameAndType.name;
             method.descriptor = method.nameAndType.descriptor;
+            method.cpClz = this;
 
             return method;
         }
@@ -287,10 +376,11 @@ namespace minij.rtda.heap
             var tmp = (CONSTANT_Fieldref_info)clzFile.cpInfo[i];
 
             Fieldref f = new Fieldref();
-            f.clazz = parseClassIndex(tmp.classIndex, clzFile);
+            f.clazzName = clzFile.getClassName(tmp.classIndex);
             f.nameAndType = parseNameAndTypeIndex(tmp.name_and_type_index, clzFile);
             f.name = f.nameAndType.name;
             f.descriptor = f.nameAndType.descriptor;
+            f.cpClz = this;
 
             return f;
         }
@@ -310,28 +400,14 @@ namespace minij.rtda.heap
         {
             var tmp = (CONSTANT_Class)clzFile.cpInfo[classIndex];
             string clzName = clzFile.getString(tmp.nameIndex);
-
-            return this;
+            Class c = new Class();
+            c.name = clzName;
+            return  c;
         }
 
         public   void  initFinalVars()
         {
         }
 
-        public override void  reslove()
-        {
-            if (this.inited) return ;
-            this.inited = true;
-
-            this.superClazz = this.loader.load(this.superClazzName);
-
-            // 初始化接口
-            this.interfaces = new Class[this.interfacesNames.Length];
-            for (int i = 0; i < this.interfaces.Length; i++)
-            {
-                this.interfaces[i] = this.loader.load(this.interfacesNames[i]);
-            }
-            
-        }
     }
 }

@@ -122,6 +122,7 @@
     <Compile Include="instructions\convert\I2x.cs" />
     <Compile Include="instructions\Factory.cs" />
     <Compile Include="instructions\Instruction.cs" />
+    <Compile Include="instructions\invocation\Invoke.cs" />
     <Compile Include="instructions\invocation\Return.cs" />
     <Compile Include="instructions\load\Load.cs" />
     <Compile Include="instructions\math\Xor.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="instructions\math\Shl.cs" />
     <Compile Include="instructions\math\Sub.cs" />
     <Compile Include="instructions\math\Add.cs" />
+    <Compile Include="instructions\references\Field.cs" />
     <Compile Include="instructions\stack\Swap.cs" />
     <Compile Include="instructions\stack\Dup.cs" />
     <Compile Include="instructions\stack\Pop.cs" />

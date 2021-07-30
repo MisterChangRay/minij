@@ -9,6 +9,8 @@ namespace minij.rtda.heap.constantpool
     class InterfaceMethodref : ConstantPool
     {
         public Class clazz;
+        public string clazzName;
+        
         public NameAndType nameAndType;
         public string name;
         public string descriptor;

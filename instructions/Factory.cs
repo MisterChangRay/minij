@@ -23,7 +23,11 @@ namespace minij.instructions
                     return new LDC_W();
                 case 0x14:
                     return new LDC2_W();
-                
+
+                case 0xb8:
+                    return new Invokestatic();
+                case 0xb2:
+                    return new GET_STATIC();
 
 
                 case 0x60:

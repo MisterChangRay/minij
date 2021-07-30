@@ -22,16 +22,7 @@ namespace minij.rtda
 
         public Frame newFrame(Method method)
         {
-            AttrCode code = (AttrCode) method.getAttribute("Code");
-            CodeReader codeReader = new CodeReader(code.code);
-            Frame f = new Frame();
-            f.method = method;
-            f.reader = codeReader;
-
-            f.operandStack = new OperandStack(code.max_stack);
-            f.localVars = new LocalVars(code.max_locals);
-            f.thread = this;
-
+            Frame f = Frame.buildFrame(this, method);
             return f;
         }
 
