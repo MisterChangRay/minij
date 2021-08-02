@@ -58,6 +58,11 @@ namespace minij.rtda
             return (double)localVars[index];
         }
 
+        public void set(int i, object obj)
+        {
+            localVars[i] = obj;
+        }
+
         public   void  setRef(int index, JObject i)
         {
             localVars[index] = i;

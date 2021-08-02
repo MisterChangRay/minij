@@ -49,7 +49,7 @@ namespace minij.instructions.math
                         Console.WriteLine(tmp);
                         break;
                     case "(J)V":
-                        var tmp2 = frame.operandStack.popInt();
+                        var tmp2 = frame.operandStack.popLong();
                         Console.WriteLine(tmp2);
                         break;
                 }

@@ -44,15 +44,21 @@ namespace minij.rtda
         public void doInvoke(Method method)
         {
             Frame newFrame = buildFrame(this.thread, method);
-            copyArgs(this, newFrame);
+            copyArgs(this, newFrame, method);
             this.thread.pushFrame(newFrame);
         }
 
-        private void copyArgs(Frame frame, Frame newFrame)
+        // 复制方法调用时的参数
+        private void copyArgs(Frame frame, Frame newFrame, Method method)
         {
+
+            for (int i = 0; i < method.argsAndReturn.argCount; i++)
+            {
+                var obj = frame.operandStack.pop();
+                newFrame.localVars.set(i, obj);
+
+            }
             
-
-
         }
 
         public static Frame buildFrame(Thread thread, Method method)
