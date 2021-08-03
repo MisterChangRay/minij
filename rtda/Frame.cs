@@ -36,6 +36,10 @@ namespace minij.rtda
 
         }
 
+        public void reversePC() {
+            this.nextPc = this.thread.pc;
+        }
+
         public void  newBranch(int index)
         {
             this.nextPc = this.thread.pc + index;
@@ -43,6 +47,10 @@ namespace minij.rtda
 
         public void doInvoke(Method method)
         {
+            if (method.accessFlags.ACC_NATIVE()) {
+                return;
+            }
+
             Frame newFrame = buildFrame(this.thread, method);
             copyArgs(this, newFrame, method);
             this.thread.pushFrame(newFrame);

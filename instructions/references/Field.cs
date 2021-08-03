@@ -49,8 +49,13 @@ namespace minij.instructions.math
 
             var clz = frame.method.clazz;
             Fieldref r2 =  (Fieldref)clz.cpInfo[this.index];
-
             Field field = r2.resloveFieldref();
+
+            if (!field.clazz.inited) {
+                frame.reversePC();
+                field.clazz.doInit(frame);
+                return;
+            }
 
             var tmp = field.clazz.staticVars[field.slotId];
 
@@ -115,7 +120,16 @@ namespace minij.instructions.math
         }
         public  override void   execute(Frame frame)
         {
-            var field = frame.method.clazz.getField(this.index, true);
+
+            var fieldRef = (Fieldref)frame.method.clazz.cpInfo[this.index];
+            var field = fieldRef.resloveFieldref();
+            if (!field.clazz.inited)
+            {
+                frame.reversePC();
+                field.clazz.doInit(frame);
+                return;
+            }
+
             switch (field.descriptor) {
                 case "Z":
                     // boolean

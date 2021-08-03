@@ -255,24 +255,24 @@ namespace minij.rtda.heap
                 if (cpTmp is CONSTANT_Class)
                 {
                     this.cpInfo.Add(parseClassIndex(i, clzFile));
-                }
+                } else 
                 if (cpTmp is CONSTANT_Fieldref_info)
                 {
                     this.cpInfo.Add(parseFiledRefInfo(i, clzFile));
-                }
+                } else 
 
                 if (cpTmp is CONSTANT_Methodref_info)
                 {
                     this.cpInfo.Add(parseMethodRef(i, clzFile));
-                }
+                } else 
                 if (cpTmp is CONSTANT_InterfaceMethodref_info)
                 {
                     this.cpInfo.Add(parseInterfaceMethodRef(i, clzFile));
-                }
+                } else 
                 if (cpTmp is CONSTANT_MethodHandle_info)
                 {
                     this.cpInfo.Add(parseMethodHandle(i, clzFile));
-                }
+                } else 
 
                 if (cpTmp is CONSTANT_Utf8_info)
                 {
@@ -281,7 +281,7 @@ namespace minij.rtda.heap
                     u2.str = u1.str;
 
                     this.cpInfo.Add(u2);
-                }
+                } else 
                 if (cpTmp is CONSTANT_String_info)
                 {
                     var u1 = (CONSTANT_String_info)cpTmp;
@@ -289,7 +289,7 @@ namespace minij.rtda.heap
                     u2.str = clzFile.getString(u1.string_index);
 
                     this.cpInfo.Add(u2);
-                }
+                } else 
                 if (cpTmp is CONSTANT_Integer_info)
                 {
                     var u1 = (CONSTANT_Integer_info)cpTmp;
@@ -297,7 +297,7 @@ namespace minij.rtda.heap
                     u2.val = u1.val;
 
                     this.cpInfo.Add(u2);
-                }
+                } else 
 
                 if (cpTmp is CONSTANT_Long_info)
                 {
@@ -309,7 +309,7 @@ namespace minij.rtda.heap
                    this.cpInfo.Add(u2);
                    this.cpInfo.Add(null);
                     i++;
-                }
+                } else 
                 if (cpTmp is CONSTANT_Double_info)
                 {
                     var u1 = (CONSTANT_Double_info)cpTmp;
@@ -319,7 +319,7 @@ namespace minij.rtda.heap
                     this.cpInfo.Add(u2);
                     this.cpInfo.Add(null);
                     i++;
-                }
+                } else 
                 if (cpTmp is CONSTANT_Float_info)
                 {
                     var u1 = (CONSTANT_Float_info)cpTmp;
@@ -327,6 +327,10 @@ namespace minij.rtda.heap
                     u2.val = u1.val;
 
                     this.cpInfo.Add(u2);
+                }
+                else {
+
+                    this.cpInfo.Add(null);
                 }
                
 
@@ -395,6 +399,8 @@ namespace minij.rtda.heap
             NameAndType n = new NameAndType();
             n.name = clzFile.getString(c.nameIndex);
             n.descriptor = clzFile.getString(c.descriptorIndex);
+            n.cpClz = this;
+
             return n;
         }
 
@@ -404,6 +410,7 @@ namespace minij.rtda.heap
             string clzName = clzFile.getString(tmp.nameIndex);
             Class c = new Class();
             c.name = clzName;
+            c.cpClz = this;
             return  c;
         }
 
@@ -418,6 +425,18 @@ namespace minij.rtda.heap
                 }
             });
 
+        }
+
+        public void doInit(Frame t)
+        {
+            if(this.inited == false)
+            {
+                this.inited = true;
+            }
+
+
+            var initm = this.getMethod("<clinit>", "()V");
+            t.doInvoke(initm);
         }
 
         private void doInitVal(Field f, AttrConstantValue v)

@@ -26,7 +26,7 @@ namespace minij
                 byte code = frame.reader.read();
                 Instruction instruction = Factory.build(code);
                 if (JVMConfig.config.verbose) {
-                    Console.WriteLine("PC: {0}, execute: {1}", frame.nextPc, instruction);
+                    Console.WriteLine("PC: {0}, execute: {1}, method: {2}.{3}", frame.nextPc, instruction, frame.method.clazz.name, frame.method.name);
                 }
                 instruction.feachOperationCode(frame.reader);
                 frame.nextPc = reader.pc();
