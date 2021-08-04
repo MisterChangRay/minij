@@ -24,11 +24,21 @@ namespace minij.instructions
                 case 0x14:
                     return new LDC2_W();
 
+          
+
                 case 0xb8:
                     return new Invokestatic();
+
+                case 0xb4:
+                    return new GET_FIELD();
+                case 0xb5:
+                    return new PUT_FILED();
                 case 0xb6:
                     return new Invokevirtual();
-
+                case 0xb7:
+                    return new InvokeSpecial();
+                case 0xbb:
+                    return new NEW();
                 case 0xb2:
                     return new GET_STATIC();
                 case 0xb3:

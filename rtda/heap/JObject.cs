@@ -9,7 +9,7 @@ namespace minij.rtda.heap
     class JObject
     {
         public Class clazz;
-        public object data;
+        public object[] data;
         public object ext;
 
 
@@ -18,6 +18,7 @@ namespace minij.rtda.heap
 
             JObject jobj = new JObject();
             jobj.clazz = clz;
+            jobj.data = new object[clz.maxInstanceSlotId];
             return jobj;
 
         }

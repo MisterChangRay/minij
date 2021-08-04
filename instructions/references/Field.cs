@@ -19,8 +19,39 @@ namespace minij.instructions.math
         }
         public  override void   execute(Frame frame)
         {
-            var val = frame.localVars.getInt(index);
-            frame.operandStack.pushInt(val);
+            var self = (JObject)frame.operandStack.getThis();
+            if (self == null)
+            {
+                throw new Exception("NullPointerException");
+            }
+            self = frame.operandStack.popRef();
+
+            Fieldref fref = (Fieldref)frame.method.clazz.cpInfo[this.index];
+            fref.resloveClass();
+            var field = fref.resloveFieldref();
+
+            switch (field.descriptor)
+            {
+                case "I": // int
+                case "B": // byte
+                case "Z": // boolean
+                case "S": // short
+                case "C": // char
+                    frame.operandStack.pushInt((int) self.data[field.slotId]);
+                    break;
+                case "L":
+                    frame.operandStack.pushLong((long)self.data[field.slotId]);
+                    break;
+                case "D":
+                    frame.operandStack.pushDouble((double)self.data[field.slotId]);
+                    break;
+                case "F":
+                    frame.operandStack.pushFloat((float)self.data[field.slotId]);
+                    break;
+                default: // object array
+                    frame.operandStack.pushRef((JObject)self.data[field.slotId]);
+                    break;
+            }
         }
 
     }
@@ -31,9 +62,39 @@ namespace minij.instructions.math
         {
             this.index = reader.readUint16();
         }
-        public  override void   execute(Frame frame)
+        public  override void  execute(Frame frame)
         {
-            var field = frame.method.clazz.getField(this.index, false);
+
+            var self = (JObject) frame.operandStack.getThis();
+            if (self == null) {
+                throw new Exception("NullPointerException");
+            }
+
+            Fieldref fref =  (Fieldref)frame.method.clazz.cpInfo[this.index];
+            fref.resloveClass();
+            var field = fref.resloveFieldref();
+
+            switch (field.descriptor) {
+                case "I": // int
+                case "B": // byte
+                case "Z": // boolean
+                case "S": // short
+                case "C": // char
+                    self.data[field.slotId] = frame.operandStack.popInt();
+                    break;
+                case "L":
+                    self.data[field.slotId] = frame.operandStack.popLong();
+                    break;
+                case "D":
+                    self.data[field.slotId] = frame.operandStack.popDouble();
+                    break;
+                case "F":
+                    self.data[field.slotId] = frame.operandStack.popFloat();
+                    break;
+                default: // object array
+                    self.data[field.slotId] = frame.operandStack.popRef();
+                    break;
+            }
         }
     }
 

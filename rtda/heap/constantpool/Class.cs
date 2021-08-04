@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class Class : ConstantPool
+    class Class 
     {
         public bool inited;
         public JObject clzObj;
@@ -193,7 +193,7 @@ namespace minij.rtda.heap
 
         private void resloveSuperClass()
         {
-            if (this.superClazzName.Equals("java/lang/Object"))
+            if (this.superClazzName == null || this.superClazzName.Equals("java/lang/Object"))
             {
                 return;
             }
@@ -404,11 +404,13 @@ namespace minij.rtda.heap
             return n;
         }
 
-        private Class parseClassIndex(int classIndex, ClassFile clzFile)
+  
+
+        private ClassRef parseClassIndex(int classIndex, ClassFile clzFile)
         {
             var tmp = (CONSTANT_Class)clzFile.cpInfo[classIndex];
             string clzName = clzFile.getString(tmp.nameIndex);
-            Class c = new Class();
+            ClassRef c = new ClassRef();
             c.name = clzName;
             c.cpClz = this;
             return  c;

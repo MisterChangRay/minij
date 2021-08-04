@@ -1,10 +1,14 @@
 package jvmgo.book.ch06;
 public class MyObject {
+
 public final static int finalVar = 99;
 public static int staticVar = 55;
 public int instanceVar = 66;
+
 public static void main(String[] args) {
-	long r = getResult(100) +staticVar;
+	long r = getResult(100) + staticVar + finalVar;
+	Fuck f = new Fuck();
+	r += f.get();
 	System.out.println(r);
 }
 
@@ -15,19 +19,16 @@ public static long getResult(int c) {
 	}
 	return r;
 }
-
-public static long getResult2(int c, int c2) {
-	long r = c + c2;
-	return r;
 }
 
 
+class Fuck {
+	private int i ;
+	public int get() {
+		return this.i;
+	}
 
-public static int getStatic(int a, long[] b) {
-	return staticVar;
-}
-
-public static int getStatic() {
-	return staticVar;
-}
+	public Fuck() {
+		this.i = 99;
+	}
 }

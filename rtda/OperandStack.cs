@@ -17,13 +17,18 @@ namespace minij.rtda
         private int index = 0;
 
 
+
+        public Object getThis() {
+            return this.stcks[0];
+        }
+
         public OperandStack(int i) {
             stcks = new Object[i];
         }
 
         public Object pop() {
             index -= 1;
-            return (int)stcks[index];
+            return (Object)stcks[index];
         }
 
 

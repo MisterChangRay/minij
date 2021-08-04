@@ -137,6 +137,7 @@
     <Compile Include="instructions\math\Shl.cs" />
     <Compile Include="instructions\math\Sub.cs" />
     <Compile Include="instructions\math\Add.cs" />
+    <Compile Include="instructions\references\New.cs" />
     <Compile Include="instructions\references\Field.cs" />
     <Compile Include="instructions\stack\Swap.cs" />
     <Compile Include="instructions\stack\Dup.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rtda\CodeReader.cs" />
+    <Compile Include="rtda\heap\constantpool\ClassRef.cs" />
     <Compile Include="rtda\heap\constantpool\MethodHandle.cs" />
     <Compile Include="rtda\heap\constantpool\MethodType.cs" />
     <Compile Include="rtda\heap\constantpool\InvokeDynamic.cs" />
