@@ -52,19 +52,30 @@ namespace minij.rtda.heap
                     res = item;
                 }
             });
+            if (null == res && this.superClazz != null) {
+                return this.superClazz.findField(name, descriptor);
+            }
+
             return res;
         }
 
         public Method getMethod(string name, string descriptor)
         {
+            Method res = null;
             foreach (var item in this.methods)
             {
                 if (item.name == name && item.descriptor == descriptor)
                 {
-                    return item;
+                    res = item;
                 }
             }
-            return null;
+
+            if (null == res && this.superClazz != null)
+            {
+                return this.superClazz.getMethod(name, descriptor);
+            }
+
+            return res;
         }
 
         public Method getMethod(string name, string descriptor, bool isStatic)

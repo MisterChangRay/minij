@@ -19,7 +19,7 @@ namespace minij.instructions.math
         }
         public  override void   execute(Frame frame)
         {
-            var self = (JObject)frame.operandStack.getThis();
+            var self = (JObject)frame.operandStack.getThis(0);
             if (self == null)
             {
                 throw new Exception("NullPointerException");
@@ -65,7 +65,7 @@ namespace minij.instructions.math
         public  override void  execute(Frame frame)
         {
 
-            var self = (JObject) frame.operandStack.getThis();
+            var self = (JObject) frame.operandStack.getThis(0);
             if (self == null) {
                 throw new Exception("NullPointerException");
             }
