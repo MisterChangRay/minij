@@ -37,12 +37,58 @@ namespace minij.instructions
                     return new Invokevirtual();
                 case 0xb7:
                     return new InvokeSpecial();
+                case 0xb9:
+                    return new InvokeInterface();
+
                 case 0xbb:
                     return new NEW();
                 case 0xb2:
                     return new GET_STATIC();
                 case 0xb3:
                     return new PUT_STATIC();
+
+
+                case 0xc5:
+                    return new MULTIA_NEW_ARRAY();
+
+                case 0xbc:
+                    return new NEW_ARRAY();
+                case 0xbd:
+                    return new ANEW_ARRAY();
+                case 0x50:
+                    return new LASTORE();
+                case 0x51:
+                    return new FASTORE();
+                case 0x52:
+                    return new DASTORE();
+                case 0x53:
+                    return new AASTORE();
+                case 0x54:
+                    return new BASTORE();
+                case 0x55:
+                    return new CASTORE();
+                case 0x56:
+                    return new SASTORE();
+                case 0x4f:
+                    return new IASTORE();
+
+                case 0x2E:
+                    return new IALOAD();
+                case 0x2F:
+                    return new LALOAD();
+                case 0x30:
+                    return new FALOAD();
+                case 0x31:
+                    return new DALOAD();
+                case 0x32:
+                    return new AALOAD();
+                case 0x33:
+                    return new BALOAD();
+                case 0x34:
+                    return new CALOAD();
+                case 0x35:
+                    return new SALOAD();
+                
 
 
                 case 0x60:

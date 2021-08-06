@@ -9,7 +9,7 @@ namespace minij.rtda.heap
     class JObject
     {
         public Class clazz;
-        public object[] data;
+        public object data;
         public object ext;
 
 

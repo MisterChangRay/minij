@@ -41,6 +41,16 @@ namespace minij.rtda.heap
         public int maxStaticSlotId;
 
 
+        public bool isArray()
+        {
+            return this.name.StartsWith("[");
+        }
+
+        public string getArrayType()
+        {
+            var i = this.name.LastIndexOf("[");
+            return this.name.Substring(i + 1);
+        }
 
         public Field findField(string name, string descriptor)
         {
@@ -80,6 +90,7 @@ namespace minij.rtda.heap
 
         public Method getMethod(string name, string descriptor, bool isStatic)
         {
+             Method res = null;
             foreach(var item in this.methods)
             {
                 if(isStatic && !item.accessFlags.ACC_STATIC())
@@ -89,10 +100,15 @@ namespace minij.rtda.heap
 
                 if (item.name == name && item.descriptor == descriptor
                     && item.accessFlags.ACC_STATIC() == isStatic) {
-                    return item;
+                    res = item;
                 }
             }
-            return null;
+
+            if (null == res && this.superClazz != null)
+            {
+                return this.superClazz.getMethod(name, descriptor, isStatic);
+            }
+            return res;
         }
 
         public Field getField(int solotId, bool isStatic)

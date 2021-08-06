@@ -6,10 +6,11 @@ public static int staticVar = 55;
 public int instanceVar = 66;
 
 public static void main(String[] args) {
-	long r = getResult(100) + staticVar + finalVar;
-	Fuck f = new Fuck2();
-	r += f.get2();
-	System.out.println(r);
+	FuckI[] fucks = new  FuckI[2];
+
+
+	FuckI f2 = new Fuck2();
+	System.out.println( f2.get());
 }
 
 public static long getResult(int c) {
@@ -22,8 +23,11 @@ public static long getResult(int c) {
 }
 
 
+interface FuckI {
+	int get();
+}
 
-class Fuck {
+class Fuck implements FuckI {
 	public int name ;
 	public int get() {
 		return this.name;

@@ -19,7 +19,7 @@ namespace minij.rtda
 
 
         public Object getThis(int i) {
-            return this.stcks[i];
+            return this.stcks[this.index - 1 - i];
         }
 
         public OperandStack(int i) {

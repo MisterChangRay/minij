@@ -137,6 +137,7 @@
     <Compile Include="instructions\math\Shl.cs" />
     <Compile Include="instructions\math\Sub.cs" />
     <Compile Include="instructions\math\Add.cs" />
+    <Compile Include="instructions\references\Array.cs" />
     <Compile Include="instructions\references\New.cs" />
     <Compile Include="instructions\references\Field.cs" />
     <Compile Include="instructions\stack\Swap.cs" />

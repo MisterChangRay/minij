@@ -19,12 +19,11 @@ namespace minij.instructions.math
         }
         public  override void   execute(Frame frame)
         {
-            var self = (JObject)frame.operandStack.getThis(0);
+            var self = (JObject)frame.operandStack.popRef();
             if (self == null)
             {
                 throw new Exception("NullPointerException");
             }
-            self = frame.operandStack.popRef();
 
             Fieldref fref = (Fieldref)frame.method.clazz.cpInfo[this.index];
             fref.resloveClass();
@@ -37,19 +36,19 @@ namespace minij.instructions.math
                 case "Z": // boolean
                 case "S": // short
                 case "C": // char
-                    frame.operandStack.pushInt((int) self.data[field.slotId]);
+                    frame.operandStack.pushInt((int)((object[]) self.data)[field.slotId]);
                     break;
                 case "L":
-                    frame.operandStack.pushLong((long)self.data[field.slotId]);
+                    frame.operandStack.pushLong((long)((object[])self.data)[field.slotId]);
                     break;
                 case "D":
-                    frame.operandStack.pushDouble((double)self.data[field.slotId]);
+                    frame.operandStack.pushDouble((double)((object[])self.data)[field.slotId]);
                     break;
                 case "F":
-                    frame.operandStack.pushFloat((float)self.data[field.slotId]);
+                    frame.operandStack.pushFloat((float)((object[])self.data)[field.slotId]);
                     break;
                 default: // object array
-                    frame.operandStack.pushRef((JObject)self.data[field.slotId]);
+                    frame.operandStack.pushRef((JObject)((object[])self.data)[field.slotId]);
                     break;
             }
         }
@@ -64,12 +63,7 @@ namespace minij.instructions.math
         }
         public  override void  execute(Frame frame)
         {
-
-            var self = (JObject) frame.operandStack.getThis(0);
-            if (self == null) {
-                throw new Exception("NullPointerException");
-            }
-
+         
             Fieldref fref =  (Fieldref)frame.method.clazz.cpInfo[this.index];
             fref.resloveClass();
             var field = fref.resloveFieldref();
@@ -80,19 +74,62 @@ namespace minij.instructions.math
                 case "Z": // boolean
                 case "S": // short
                 case "C": // char
-                    self.data[field.slotId] = frame.operandStack.popInt();
+                    var val = frame.operandStack.popInt();
+                    var self = (JObject)frame.operandStack.popRef();
+
+                    if (self == null)
+                    {
+                        throw new Exception("NullPointerException");
+                    }
+
+                    var tmp = (object[]) self.data;
+                    tmp[field.slotId] = val;
                     break;
                 case "L":
-                    self.data[field.slotId] = frame.operandStack.popLong();
+                    var val2 = frame.operandStack.popLong();
+                    self = (JObject)frame.operandStack.popRef();
+
+                    if (self == null)
+                    {
+                        throw new Exception("NullPointerException");
+                    }
+
+                    var tmp1 = (object[])self.data;
+                    tmp1[field.slotId] = val2;
                     break;
                 case "D":
-                    self.data[field.slotId] = frame.operandStack.popDouble();
+                    var val3 = frame.operandStack.popDouble();
+                    self = (JObject)frame.operandStack.popRef();
+
+                    if (self == null)
+                    {
+                        throw new Exception("NullPointerException");
+                    }
+                    var tmp2 = (object[])self.data;
+                    tmp2[field.slotId] = val3;
                     break;
                 case "F":
-                    self.data[field.slotId] = frame.operandStack.popFloat();
+                    var val4 = frame.operandStack.popFloat();
+                    self = (JObject)frame.operandStack.popRef();
+
+                    if (self == null)
+                    {
+                        throw new Exception("NullPointerException");
+                    }
+                    var tmp3 = (object[])self.data;
+                    tmp3[field.slotId] = val4;
                     break;
                 default: // object array
-                    self.data[field.slotId] = frame.operandStack.popRef();
+                    var val5 = frame.operandStack.popRef();
+                    self = (JObject)frame.operandStack.popRef();
+
+                    if (self == null)
+                    {
+                        throw new Exception("NullPointerException");
+                    }
+
+                    var tmp4 = (object[])self.data;
+                    tmp4[field.slotId] = val5;
                     break;
             }
         }

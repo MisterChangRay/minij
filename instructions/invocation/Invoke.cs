@@ -10,6 +10,40 @@ using minij.rtda.heap;
 
 namespace minij.instructions.math
 {
+    //invokeinterface
+    class InvokeInterface : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader)
+        {
+            this.index = reader.readUint16();
+            this.index2 = reader.read();
+            this.index3 = reader.read();
+        }
+        public override void execute(Frame frame)
+        {
+            
+            var mthodRefObj = frame.method.clazz.cpInfo[this.index];
+            var methodRefo = (InterfaceMethodref)mthodRefObj;
+            var methodRef = methodRefo.resolveMethodref();
+            var method = methodRef.clazz.getMethod(methodRef.nameAndType.name, methodRef.nameAndType.descriptor);
+            if (method.accessFlags.ACC_STATIC())
+            {
+                throw new ApplicationException("IncompatibleClassChangeError");
+            }
+
+            var self = (JObject)frame.operandStack.getThis(method.argsAndReturn.argCount - 1);
+
+            if (self == null)
+            {
+                throw new Exception("NullPointerException");
+            }
+            method = self.clazz.getMethod(methodRef.nameAndType.name, methodRef.nameAndType.descriptor);
+
+            frame.doInvoke(method);
+        }
+
+    }
+
     class  Invokestatic : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader){
@@ -46,7 +80,7 @@ namespace minij.instructions.math
             var methodRef = methodRefo.resolveMethodref();
             var methodRef2 = methodRef.clazz.getMethod(methodRef.nameAndType.name, methodRef.nameAndType.descriptor);
 
-            var self = (JObject) frame.operandStack.getThis(methodRef2.argsAndReturn.argCount);
+            var self = frame.operandStack.getThis(methodRef2.argsAndReturn.argCount - 1);
             if (self == null) {
                 if (methodRef.name == "println")
                 {
@@ -67,7 +101,7 @@ namespace minij.instructions.math
                 throw new Exception("NullPointerException");
             }
 
-            var method  = self.clazz.getMethod(methodRef.name, methodRef.descriptor);
+            var method  = ((JObject)self).clazz.getMethod(methodRef.name, methodRef.descriptor);
             
          
 

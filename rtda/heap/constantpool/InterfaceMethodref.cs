@@ -14,6 +14,17 @@ namespace minij.rtda.heap.constantpool
         public NameAndType nameAndType;
         public string name;
         public string descriptor;
-      
+
+        public InterfaceMethodref resolveMethodref()
+        {
+            this.clazz = this.cpClz.thisClazz.loader.load(this.clazzName);
+            return this;
+        }
+
+        public Class resolveClass()
+        {
+            this.resolveMethodref();
+            return this.clazz;
+        }
     }
 }
