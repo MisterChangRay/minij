@@ -27,7 +27,7 @@ namespace minij.classfile.constant
 
             ulong va = Convert.ToUInt64(this.hightBytes) << 32;
             va = va | lowBytes;
-            long va2 = Convert.ToInt64(va);
+            long va2 = unchecked((long)va);
 
             this.val = BitConverter.Int64BitsToDouble(va2);
             return this;

@@ -82,6 +82,9 @@ namespace minij.rtda.heap
         public Method getMethod(string name, string descriptor)
         {
             Method res = null;
+            if (this.methods == null) {
+                this.methods = new List<Method>();
+            }
             foreach (var item in this.methods)
             {
                 if (item.name == name && item.descriptor == descriptor)
@@ -89,6 +92,7 @@ namespace minij.rtda.heap
                     res = item;
                 }
             }
+            
 
             if (null == res && this.superClazz != null)
             {
@@ -101,7 +105,12 @@ namespace minij.rtda.heap
         public Method getMethod(string name, string descriptor, bool isStatic)
         {
              Method res = null;
-            foreach(var item in this.methods)
+
+            if (this.methods == null)
+            {
+                this.methods = new List<Method>();
+            }
+            foreach (var item in this.methods)
             {
                 if(isStatic && !item.accessFlags.ACC_STATIC())
                 {
@@ -124,6 +133,8 @@ namespace minij.rtda.heap
         public Field getField(int solotId, bool isStatic)
         {
             Field res = null;
+
+          
             for (int i = 0; i < this.fields.Count; i++)
             {
                 var tmp = this.fields[i];
@@ -259,7 +270,7 @@ namespace minij.rtda.heap
 
         private void resloveSuperClass()
         {
-            if (this.superClazzName == null || this.superClazzName.Equals("java/lang/Object"))
+            if (this.superClazzName == null)
             {
                 return;
             }
@@ -531,6 +542,10 @@ namespace minij.rtda.heap
             else if (tmp is Long)
             {
                 f.clazz.staticVars[f.slotId] = ((constantpool.Long)tmp).val;
+            } else if(tmp is constantpool.String)
+            {
+                var str = ((constantpool.String)tmp).str;
+                f.clazz.staticVars[f.slotId] =  StringPool.newString(f.clazz.loader, str);
             }
         }
     }

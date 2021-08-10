@@ -26,12 +26,11 @@ namespace minij.instructions.math
             for (int i = 0; i < len.Length; i++)
             {
                 len[i] = frame.operandStack.popInt();
-
             }
 
-            JObject obj = new JObject();
             ClassRef c = (ClassRef)frame.method.clazz.cpInfo[this.index];
             Class c2 = c.resloveClass();
+            JObject obj = c2.newObject();
             obj.clazz = c2;
 
             var type = c2.getArrayType();
@@ -75,12 +74,14 @@ namespace minij.instructions.math
         {
 
             var count = frame.operandStack.popInt();
-            JObject obj = new JObject();
-            obj.data = new JObject[count];
+            
 
             ClassRef c = (ClassRef)frame.method.clazz.cpInfo[this.index];
             Class c2 = c.resloveClass();
-            obj.clazz = c2.loader.load("[L" + c2.name);
+
+            var clz = c2.loader.load("[L" + c2.name);
+            JObject obj = clz.newObject();
+            obj.data = new JObject[count];
 
             frame.operandStack.pushRef(obj);
         }
@@ -98,8 +99,8 @@ namespace minij.instructions.math
         {
 
             var count = frame.operandStack.popInt();
-            JObject obj = new JObject();
 
+            JObject obj = null;
             switch (this.index)
             {
                 case 10: // int
@@ -107,15 +108,19 @@ namespace minij.instructions.math
                 case 4: // boolean
                 case 9: // short
                 case 5: // char
+                    obj = frame.method.clazz.loader.load("[I").newObject();
                     obj.data = new int[count];
                     break;
                 case 11:
+                    obj = frame.method.clazz.loader.load("[J").newObject();
                     obj.data = new long[count];
                     break;
                 case 7:
+                    obj = frame.method.clazz.loader.load("[D").newObject();
                     obj.data = new double[count];
                     break;
                 case 6:
+                    obj = frame.method.clazz.loader.load("[F").newObject();
                     obj.data = new float[count];
                     break;
             }

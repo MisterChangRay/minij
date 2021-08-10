@@ -21,6 +21,14 @@ namespace minij.instructions.math
         {
             var c = (ClassRef)frame.method.clazz.cpInfo[this.index];
             Class c2 = c.resloveClass();
+
+            if (!c2.inited)
+            {
+                frame.reversePC();
+                c2.doInit(frame);
+                return;
+            }
+
             frame.operandStack.pushRef(c2.newObject());
             
         }

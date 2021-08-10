@@ -57,7 +57,7 @@ namespace minij.rtda
         private void copyArgs(Frame frame, Frame newFrame, Method method)
         {
 
-            for (int i = 0; i < method.argsAndReturn.argCount; i++)
+            for (int i = method.argsAndReturn.argCount - 1; i >=0; i--)
             {
                 var obj = frame.operandStack.pop();
                 newFrame.localVars.set(i, obj);

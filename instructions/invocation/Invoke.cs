@@ -123,6 +123,7 @@ namespace minij.instructions.math
                             Console.WriteLine(StringPool.toJString(tmp3));
                             break;
                     }
+                    frame.operandStack.popRef();
                     return;
                 }
 

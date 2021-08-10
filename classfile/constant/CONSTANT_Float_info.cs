@@ -23,7 +23,7 @@ namespace minij.classfile.constant
             this.bytes = classReader.readUInt32();
 
             ulong va = Convert.ToUInt64(this.bytes) << 32;
-            long val2 = Convert.ToInt64(va);
+            long val2 = unchecked((long)va);
             this.val = BitConverter.DoubleToInt64Bits(val2);
             return this;
         }

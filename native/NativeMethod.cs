@@ -22,6 +22,10 @@ namespace minij.instructions
 
             register("getName0", "()Ljava/lang/String;", new Class_getName0());
 
+            register("desiredAssertionStatus0", "(Ljava/lang/Class;)Z", new Class_desiredAssertionStatus0());
+
+            register("getClass", "()Ljava/lang/Class;", new Object_getClass());
+
 
         }
 

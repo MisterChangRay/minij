@@ -10,7 +10,18 @@ using System.Threading.Tasks;
 
 namespace minij.native.java.lang
 {
+
     
+
+    class Class_desiredAssertionStatus0 : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader) { }
+        public override void execute(Frame frame)
+        {
+            frame.operandStack.pushInt(0);
+
+        }
+    }
 
     class Class_getName0 : Instruction
     {
