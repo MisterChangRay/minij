@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class Field
+    public class Field
     {
         public int slotId;
         public AccessFlags accessFlags;
@@ -33,6 +33,7 @@ namespace minij.rtda.heap
             minij.classfile.attributes.Attribute res = null;
             this.attrs.ForEach(item =>
             {
+                if (item == null) return;
                 if (res == null && item.name == v)
                 {
                     res = item;

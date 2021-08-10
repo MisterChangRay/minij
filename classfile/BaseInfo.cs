@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 **/
 namespace minij.classfile
 {
-    class BaseInfo
+    public class BaseInfo
     {
         public AccessFlags accessFlags;
         public UInt16 name_index;

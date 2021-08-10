@@ -10,6 +10,29 @@ using minij.rtda.heap;
 
 namespace minij.instructions.math
 {
+    //invoke native
+    class InvokeNative : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader)
+        {
+        }
+        public override void execute(Frame frame)
+        {
+            var method = frame.method;
+            var nativeMethod = NativeMethod.findMethod(method.name, method.descriptor);
+            if (method.name == "registerNatives") {
+                return;
+            }
+            if (null == nativeMethod)
+            {
+                throw new Exception("not found native method");
+            }
+
+            nativeMethod.execute(frame);
+        }
+
+    }
+
     //invokeinterface
     class InvokeInterface : Instruction
     {
@@ -93,6 +116,11 @@ namespace minij.instructions.math
                         case "(J)V":
                             var tmp2 = frame.operandStack.popLong();
                             Console.WriteLine(tmp2);
+                            break;
+                        case "(Ljava/lang/String;)V":
+                            var tmp3 = frame.operandStack.popRef();
+
+                            Console.WriteLine(StringPool.toJString(tmp3));
                             break;
                     }
                     return;

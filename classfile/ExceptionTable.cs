@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 **/
 namespace minij.classfile
 {
-    class ExceptionTable : Reader
+    public class ExceptionTable : Reader
     {
        public UInt16 start_pc;
        public UInt16 end_pc;

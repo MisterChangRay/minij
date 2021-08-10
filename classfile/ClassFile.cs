@@ -32,7 +32,7 @@ ClassFile {
 **/
 namespace minij.classfile
 {
-    class ClassFile
+    public class ClassFile
     {
         private ClassReader reader;
 

@@ -11,7 +11,7 @@ byte short char int long float double object
 **/
 namespace minij.rtda
 {
-    class OperandStack
+    public class OperandStack
     {
         private Object[] stcks;
         private int index = 0;

@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class ClassLoader
+    public class ClassLoader
     {
         Classpath classpath = null;
 
         Dictionary<string, Class> cache = new Dictionary<string, Class>();
         static Dictionary<string, bool> primitive = new Dictionary<string, bool> {
+            {"void", true },
             {"byte", true },
             {"boolean", true },
             {"char", true },
@@ -26,6 +27,39 @@ namespace minij.rtda.heap
 
         public ClassLoader(Classpath cp) {
             this.classpath = cp;
+
+            this.loadBasicClasses();
+            this.loadPrimitiveClasses();
+        }
+
+        private void loadPrimitiveClasses()
+        {
+            Class clz = this.load("java/lang/Class");
+            foreach (string val in primitive.Keys)
+            {
+                Class c = new Class();
+                AccessFlags ac = new AccessFlags(0x0001);
+                c.accessFlags = ac;
+                c.name = val;
+                c.loader = this;
+                c.inited = true;
+
+                c.clzObj = clz.newObject();
+                c.clzObj.ext = c;
+                cache[val] = c;
+            }
+
+        }
+
+        private void loadBasicClasses()
+        {
+            Class clz = this.load("java/lang/Class");
+            foreach (Class val in cache.Values)
+            {
+                if (null == val) continue;
+                val.clzObj = clz.newObject();
+                val.clzObj.ext = val;
+            }
         }
 
         /**
@@ -51,6 +85,12 @@ namespace minij.rtda.heap
                 clz = loadNoneArrayClz(name);
             }
 
+            string clzkey = "java/lang/Class";
+            if (cache.ContainsKey(clzkey)) {
+                var baseClz = cache[clzkey];
+                clz.clzObj = baseClz.newObject();
+                clz.clzObj.ext = clz;
+            }
             cache[name] = clz;
 
             return clz;

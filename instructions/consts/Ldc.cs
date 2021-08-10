@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using minij.classfile;
 using minij.rtda;
 using minij.rtda.heap.constantpool;
+using minij.rtda.heap;
 
 namespace minij.instructions.math
 {
@@ -28,7 +29,19 @@ namespace minij.instructions.math
                 var cp2 = (Float)cp;
                 frame.operandStack.pushFloat(cp2.val);
             }
-            else {
+            else if (cp is rtda.heap.constantpool.String)
+            {
+                var str = (rtda.heap.constantpool.String)cp;
+                var strObj = StringPool.newString(frame.method.clazz.loader, str.str);
+                frame.operandStack.pushRef(strObj);
+            }
+            else if(cp is ClassRef) {
+                var clzRef = (ClassRef)cp;
+                var clzobj =  clzRef.resloveClass().clzObj;
+                
+                frame.operandStack.pushRef(clzobj);
+            } else
+            {
                 Console.WriteLine("錯誤的指令");
             }
             

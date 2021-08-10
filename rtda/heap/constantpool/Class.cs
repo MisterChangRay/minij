@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class Class 
+    public class Class 
     {
         public bool inited;
         public JObject clzObj;
@@ -21,6 +21,9 @@ namespace minij.rtda.heap
         public string name;
         public List<ConstantPool> cpInfo; // 常量池信息
         public AccessFlags accessFlags;
+
+      
+
         public string superClazzName;
         public string[] interfacesNames;
 
@@ -69,6 +72,13 @@ namespace minij.rtda.heap
             return res;
         }
 
+        public JObject javaName()
+        {
+            var name = this.name.Replace("/", ".");
+            var obj = StringPool.newString(this.loader, name);
+            return obj;
+        }
+
         public Method getMethod(string name, string descriptor)
         {
             Method res = null;
@@ -113,16 +123,45 @@ namespace minij.rtda.heap
 
         public Field getField(int solotId, bool isStatic)
         {
-
+            Field res = null;
             for (int i = 0; i < this.fields.Count; i++)
             {
                 var tmp = this.fields[i];
                 if (tmp.accessFlags.ACC_STATIC() == isStatic && solotId == tmp.slotId) {
-                    return tmp;
+                    res = tmp;
                 }
 
             }
-            return null;
+
+            if (null == res && this.superClazz != null)
+            {
+                return this.superClazz.getField(solotId, isStatic);
+            }
+
+            return res;
+
+        }
+
+
+        public Field getField(string name, string descriptor)
+        {
+            Field res = null;
+
+            for (int i = 0; i < this.fields.Count; i++)
+            {
+                var tmp = this.fields[i];
+                if (tmp.descriptor == descriptor && tmp.name == name)
+                {
+                    res = tmp;
+                }
+
+            }
+
+            if (null == res && this.superClazz != null)
+            {
+                return this.superClazz.getField(name, descriptor);
+            }
+            return res;
 
         }
 
@@ -240,8 +279,14 @@ namespace minij.rtda.heap
 
                 m.attrs = cm.attrs;
                 m.clazz = this;
-
+             
                 m.parseArgsAndReturn();
+
+                if (m.accessFlags.ACC_NATIVE())
+                {
+                    m.injectNativeMethodCodeAttr();
+                }
+
                 this.methods.Add(m);
             }
         }
@@ -372,8 +417,8 @@ namespace minij.rtda.heap
         {
             var tmp = (CONSTANT_MethodHandle_info)clzFile.cpInfo[i];
             MethodHandle methodHandle = new MethodHandle();
-            
-            throw new NotImplementedException();
+            // todo 
+            return methodHandle;
         }
 
         private ConstantPool parseInterfaceMethodRef(int i, ClassFile clzFile)

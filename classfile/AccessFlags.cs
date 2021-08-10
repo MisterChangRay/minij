@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 **/
 namespace minij.classfile
 {
-    class AccessFlags
+    public class AccessFlags
     {
         public UInt16 access_flags;
 

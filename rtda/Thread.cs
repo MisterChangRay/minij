@@ -9,7 +9,7 @@ using minij.classfile.attributes;
 
 namespace minij.rtda
 {
-    class Thread
+    public class Thread
     {
         private FrameStack frames;
         public int pc;

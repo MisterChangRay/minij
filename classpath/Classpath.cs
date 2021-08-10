@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace minij.classpath
 {
-    class Classpath
+    public class Classpath
     {
         Dictionary<string, byte[]> cache = new Dictionary<string, byte[]>();
         Reader bootClassPath = null;

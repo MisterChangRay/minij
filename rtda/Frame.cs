@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 **/
 namespace minij.rtda
 {
-    class Frame
+    public class Frame
     {
         public int nextPc;
         public CodeReader reader;
@@ -47,9 +47,6 @@ namespace minij.rtda
 
         public void doInvoke(Method method)
         {
-            if (method.accessFlags.ACC_NATIVE()) {
-                return;
-            }
 
             Frame newFrame = buildFrame(this.thread, method);
             copyArgs(this, newFrame, method);

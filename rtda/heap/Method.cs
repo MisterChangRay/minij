@@ -1,4 +1,5 @@
 ﻿using minij.classfile;
+using minij.classfile.attributes;
 using minij.rtda.heap.constantpool;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class Method : ConstantPool
+    public  class Method : ConstantPool
     {
         public AccessFlags accessFlags;
         public string name;
@@ -105,6 +106,7 @@ namespace minij.rtda.heap
         public minij.classfile.attributes.Attribute getAttribute(string name) {
             foreach(var attr in attrs)
             {
+                if (attr == null) continue;
                 if(attr.name == name)
                 {
                     return attr;
@@ -114,9 +116,47 @@ namespace minij.rtda.heap
 
         }
 
+  
+
+        public void injectNativeMethodCodeAttr()
+        {
+            if(this.attrs == null)
+            {
+                this.attrs = new List<classfile.attributes.Attribute>();
+            }
+
+            AttrCode ac = new AttrCode();
+            ac.max_locals = 6;
+            ac.max_stack = 6;
+            ac.name = "Code";
+
+            switch (this.argsAndReturn.res[0]) {
+                case 'V':
+                    ac.code = new byte[] { 0xfe, 0xb1}; // return
+                    break;
+                case 'D':
+                    ac.code = new byte[] { 0xfe, 0xaf}; // dreturn
+                    break;
+                case 'F':
+                    ac.code = new byte[] { 0xfe, 0xae}; // freturn
+                    break;
+                case 'J':
+                    ac.code = new byte[] { 0xfe, 0xad}; // lreturn
+                    break;
+                case '[':
+                case 'L':
+                    ac.code = new byte[] { 0xfe, 0xb0}; // areturn
+                    break;
+                default:
+                    ac.code = new byte[] { 0xfe, 0xac}; // ireturn
+                    break;
+            }
+
+            this.attrs.Add(ac);
+        }
     }
 
-    class ArgAndReturn {
+    public class ArgAndReturn {
         public int argCount;
         public List<string> args;
         public string res;

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace minij.classfile
 {
-    interface Reader {
+    public interface Reader {
         Reader parse(ClassReader classReader, ClassFile cf);
     }
 
-    class ClassReader
+    public class ClassReader
     {
         private BinaryReader reader;
 

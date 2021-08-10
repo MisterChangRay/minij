@@ -146,6 +146,10 @@
     <Compile Include="instructions\store\Store.cs" />
     <Compile Include="Interpreter.cs" />
     <Compile Include="JVMConfig.cs" />
+    <Compile Include="native\java\lang\Class.cs" />
+    <Compile Include="native\java\lang\System.cs" />
+    <Compile Include="native\java\lang\Object.cs" />
+    <Compile Include="native\NativeMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rtda\CodeReader.cs" />
@@ -180,8 +184,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="native\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

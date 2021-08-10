@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap.constantpool
 {
-    abstract class ConstantPool
+    public abstract class ConstantPool
     {
         public Class cpClz;
     }

@@ -14,6 +14,7 @@ using minij.classpath;
 using minij.classfile;
 using minij.rtda;
 using minij.rtda.heap;
+using minij.instructions;
 
 namespace minij
 {
@@ -55,6 +56,7 @@ namespace minij
         private static   void  initJVM()
         {
             // todo
+            NativeMethod.initNativeMethod();
         }
 
         private static   void  initArgs(JVMConfig config)

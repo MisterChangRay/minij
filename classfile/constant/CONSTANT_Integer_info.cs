@@ -20,7 +20,7 @@ namespace minij.classfile.constant
         public override Reader parse(ClassReader classReader, ClassFile cf)
         {
             this.bytes = classReader.readUInt32();
-            this.val = Convert.ToInt32(this.bytes);
+            this.val = unchecked((int)this.bytes);
             return this;
         }
     }

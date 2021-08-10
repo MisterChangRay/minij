@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace minij.instructions
 {
-    abstract class Instruction
+    public abstract class Instruction
     {
         public int index;
         public int index2;

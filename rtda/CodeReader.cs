@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace minij.classfile
 {
 
-    class CodeReader
+    public class CodeReader
     {
         private BinaryReader reader;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.classfile.constant
 {
-    abstract class Constant : Reader
+    public abstract class Constant : Reader
     {
         public byte tag;
 

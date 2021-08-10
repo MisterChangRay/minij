@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap.constantpool
 {
-    class NameAndType : ConstantPool
+    public class NameAndType : ConstantPool
     {
         public string name;
         public string descriptor;

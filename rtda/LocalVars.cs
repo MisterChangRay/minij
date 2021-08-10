@@ -11,7 +11,7 @@ byte short char int long float double object
 **/
 namespace minij.rtda
 {
-    class LocalVars
+    public class LocalVars
     {
         private object[] localVars;
 

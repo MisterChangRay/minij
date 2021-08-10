@@ -16,7 +16,7 @@ field_info {
 **/
 namespace minij.classfile
 {
-    class FieldAndMethodInfo : BaseInfo, Reader
+    public class FieldAndMethodInfo : BaseInfo, Reader
     {
         public AccessFlags accessFlags;
         public UInt16 name_index;
