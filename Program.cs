@@ -7,7 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using CommandLine;
 using System.Collections.Generic;
 using System.Collections;
 using minij.classpath;
@@ -20,15 +19,18 @@ namespace minij
 {
 	class Program
 	{
-		public static   void  Main(string[] args)
+        public static JVMConfig config = new JVMConfig();
+
+        public static   void  Main(string[] args)
 		{
 				
             parseArgs(args);
-            if(args.Length > 0)
-            {
-                JVMConfig.config.mainClass = args[0];
+            if (config == null || 
+                config.mainClass == null ||
+                config.mainClass.Length < 1) {
+                return;
             }
-            initArgs(JVMConfig.config);
+            initArgs(config);
 
             initJVM();
             bootJVM();
@@ -38,11 +40,11 @@ namespace minij
         {
 
             Classpath c = new Classpath();
-            c.init(JVMConfig.config);
+            c.init(config);
 
             ClassLoader loader = new ClassLoader(c);
 
-            Class clz = loader.load(JVMConfig.config.mainClass);
+            Class clz = loader.load(config.mainClass);
             Method method = clz.getMethod("main", "([Ljava/lang/String;)V", true);
             if(null == method) {
                 Console.WriteLine("Not Found Main Method");
@@ -72,25 +74,69 @@ namespace minij
             }
 
 
-            if (JVMConfig.config.verbose)
+            if (config.verbose)
             {
                 Console.WriteLine("打开详细输出模式");
-                Console.WriteLine("启动类:" + JVMConfig.config.mainClass);
-                Console.WriteLine("用户JRE目录:" + JVMConfig.config.Xjre);
-                Console.WriteLine("CLASSPATH:" + JVMConfig.config.cp);
+                Console.WriteLine("启动类:" + config.mainClass);
+                Console.WriteLine("用户JRE目录:" + config.Xjre);
+                Console.WriteLine("CLASSPATH:" + config.cp);
             }
         }
 
-        static   void  HandleParseError(IEnumerable<Error> errs)
+
+        public static string safeGetArg(string[] args, int index)
         {
-            //handle errors
+            if (index < 0 || index >= args.Length) return "";
+            return args[index];
         }
+
         public static   void  parseArgs(string[] args) {
-            CommandLine.Parser.Default.ParseArguments<JVMConfig>(args).WithParsed(o =>
+            if (args.Length < 1) return;
+            for (int i = 0; i < args.Length; i+=1)
             {
-                JVMConfig.config = o;
-            }).WithNotParsed(o => {
-            });
+                string key = safeGetArg(args, i);
+                string val = safeGetArg(args, i + 1);
+                if (key.Contains("-"))
+                {
+                    key = key.ToLower();
+
+                    var count = setArg(key, val);
+
+                    i += count;
+
+                }
+                else
+                {
+                    config.mainClass = key;
+                }
+
+
+            }
 		}
-	}
+
+
+        
+        private static int setArg(string key, string v)
+        {
+            switch(key)
+            {
+                case "-cp":
+                case "-classpath":
+                    config.cp = v;
+                    config.classpath = v;
+                    return 1;
+                case "-verbose":
+                case "-v":
+                    config.verbose = true;
+                    return 0;
+                case "-xjre":
+                    config.Xjre = v;
+                    return 1;
+                case "-mainclass":
+                    config.mainClass = v;
+                    return 1;
+            }
+            return 0;
+        }
+    }
 }

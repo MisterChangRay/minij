@@ -69,8 +69,8 @@ namespace minij.classpath
 
         public static string getJrePath()
         {
-            if (JVMConfig.config.Xjre != null) {
-                return JVMConfig.config.Xjre;
+            if (Program.config.Xjre != null) {
+                return Program.config.Xjre;
             }
 
             if (System.IO.Directory.Exists("./jre")) {
