@@ -13,7 +13,7 @@ namespace minij.instructions.math
         public  override void  feachOperationCode(CodeReader reader)
         {
             this.index = reader.read();
-            this.index2 = reader.read();
+            this.index2 = unchecked((SByte)reader.read());
         }
         public  override void  execute(Frame frame)
         {

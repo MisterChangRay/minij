@@ -431,7 +431,7 @@ namespace minij.instructions
                 case 0xA5:
                     return new IF_ACMPEQ();
                 case 0xA6:
-                    return new IF_ACMPNEQ();
+                    return new IF_ACMPNQ();
 
                 case 0xA7:
                     return new GOTO();

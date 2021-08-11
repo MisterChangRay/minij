@@ -14,6 +14,11 @@ namespace minij.rtda.heap
 
 
         public static JObject newString(ClassLoader loader, string val) {
+            if(cache.ContainsKey(val))
+            {
+                return (JObject)cache[val];
+            }
+
             var clz = loader.load("java/lang/String");
             JObject jo =  clz.newObject();
 
@@ -25,6 +30,7 @@ namespace minij.rtda.heap
             // 设置字符串数组到 String 类中
             jo.setFieldVal("value", "[C", strVal);
 
+            cache[val] = jo;
             return jo;
         }
 
@@ -34,11 +40,20 @@ namespace minij.rtda.heap
             var tmp4 = tmp3.clazz.getField("value", "[C");
             var res = (JObject)((object[])tmp3.data)[tmp4.slotId];
             var res5 = (byte[])res.data;
+
+            if(res5.Length % 2 != 0)
+            {
+                byte[] n = new byte[res5.Length + 1];
+                Array.Copy(res5, 0, n, 0, res5.Length);
+                res5 = n;
+            }
+        
             return UnicodeEncoding.Unicode.GetString(res5);
         }
 
-        public static JObject getString(string code, JObject obj) {
-            string key = obj.ext.ToString();
+        public static JObject getString(JObject obj) {
+
+            string key = toJString(obj);
 
             if (cache.ContainsKey(key)) {
                 return (JObject) cache[key];

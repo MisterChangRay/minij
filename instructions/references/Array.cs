@@ -279,7 +279,7 @@ namespace minij.instructions.math
                 throw new Exception("NullPointerException");
             }
 
-            var tmp = (int[])self.data;
+            var tmp = (byte[])self.data;
 
 
             if (index < 0 || index >= tmp.Length)
@@ -287,7 +287,7 @@ namespace minij.instructions.math
                 throw new Exception("IndexOutOfRangeException");
             }
 
-            tmp[index] = val;
+            tmp[index] = (byte)val;
         }
 
     }
@@ -543,7 +543,7 @@ namespace minij.instructions.math
                 throw new Exception("NullPointerException");
             }
 
-            var tmp = (int[])self.data;
+            var tmp = (byte[])self.data;
 
 
             if (index < 0 || index >= tmp.Length)

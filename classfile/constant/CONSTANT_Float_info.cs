@@ -14,7 +14,7 @@ namespace minij.classfile.constant
 {
     class CONSTANT_Float_info : Constant
     {
-        public UInt32 bytes;
+        public uint bytes;
         public float val;
 
 
@@ -22,7 +22,7 @@ namespace minij.classfile.constant
         {
             this.bytes = classReader.readUInt32();
 
-            ulong va = Convert.ToUInt64(this.bytes) << 32;
+            ulong va = (ulong)(this.bytes) << 32;
             long val2 = unchecked((long)va);
             this.val = BitConverter.DoubleToInt64Bits(val2);
             return this;

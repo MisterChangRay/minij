@@ -19,7 +19,7 @@ namespace minij.instructions.math
         public override void execute(Frame frame)
         {
             var method = frame.method;
-            var nativeMethod = NativeMethod.findMethod(method.name, method.descriptor);
+            var nativeMethod = NativeMethod.findMethod(method.clazz.name, method.name, method.descriptor);
             if (method.name == "registerNatives") {
                 return;
             }
@@ -109,9 +109,13 @@ namespace minij.instructions.math
                 {
                     switch (methodRef.descriptor)
                     {
-                        case "(I)V":
+                        case "(Z)V":
                             var tmp = frame.operandStack.popInt();
-                            Console.WriteLine(tmp);
+                            Console.WriteLine(0 != tmp);
+                            break;
+                        case "(I)V":
+                            var tmp1 = frame.operandStack.popInt();
+                            Console.WriteLine(tmp1);
                             break;
                         case "(J)V":
                             var tmp2 = frame.operandStack.popLong();

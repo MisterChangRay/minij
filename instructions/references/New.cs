@@ -29,7 +29,8 @@ namespace minij.instructions.math
                 return;
             }
 
-            frame.operandStack.pushRef(c2.newObject());
+            JObject jo = c2.newObject();
+            frame.operandStack.pushRef(jo);
             
         }
 

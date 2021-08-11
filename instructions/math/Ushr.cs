@@ -20,7 +20,7 @@ namespace minij.instructions.math
             int val1 = frame.operandStack.popInt();
             int val2 = frame.operandStack.popInt();
             var val3 = RightMove(val2, val1);
-            frame.operandStack.pushLong(val3);
+            frame.operandStack.pushInt(val3);
         }
 
         public int RightMove( int value, int pos)
