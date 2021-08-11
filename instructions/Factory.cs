@@ -27,6 +27,8 @@ namespace minij.instructions
                     return new InvokeNative();
 
 
+                case 0xbe:
+                    return new ARRAYLENGTH();
                 case 0xb8:
                     return new Invokestatic();
 
@@ -376,6 +378,11 @@ namespace minij.instructions
                     return new DCMPL();
                 case 0x98:
                     return new DCMPG();
+
+                case 0x57:
+                    return new POP();
+                case 0x58:
+                    return new POP2();
 
                 case 0x59:
                     return new DUP();

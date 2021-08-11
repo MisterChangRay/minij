@@ -12,6 +12,46 @@ using minij.rtda.heap.constantpool;
 namespace minij.instructions.math
 {
 
+    //arraylength
+    class ARRAYLENGTH : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader)
+        {
+        }
+        public override void execute(Frame frame)
+        {
+            var refa = frame.operandStack.popRef();
+
+            var type = refa.clazz.getArrayType();
+            switch (type)
+            {
+                case "C": // char
+                    frame.operandStack.pushInt(((byte[])refa.data).Length);
+                    break;
+                case "I": // int
+                case "B": // byte
+                case "Z": // boolean
+                case "S": // short
+                    frame.operandStack.pushInt(((int[])refa.data).Length);
+                    break;
+                    break;
+                case "L":
+                    frame.operandStack.pushInt(((long[])refa.data).Length);
+                    break;
+                case "D":
+                    frame.operandStack.pushInt(((double[])refa.data).Length);
+                    break;
+                case "F":
+                    frame.operandStack.pushInt(((float[])refa.data).Length);
+                    break;
+                default: // object array
+                    frame.operandStack.pushInt(((JObject[])refa.data).Length);
+                    break;
+            }
+        }
+
+    }
+
     //multianewarray
     class MULTIA_NEW_ARRAY : Instruction
     {
@@ -36,11 +76,13 @@ namespace minij.instructions.math
             var type = c2.getArrayType();
             switch (type)
             {
+                case "C": // char
+                    obj.data = Array.CreateInstance(typeof(byte), len);
+                    break;
                 case "I": // int
                 case "B": // byte
                 case "Z": // boolean
                 case "S": // short
-                case "C": // char
                     obj.data = Array.CreateInstance(typeof(int), len);
                     break;
                 case "L":
@@ -103,12 +145,24 @@ namespace minij.instructions.math
             JObject obj = null;
             switch (this.index)
             {
-                case 10: // int
-                case 8: // byte
-                case 4: // boolean
-                case 9: // short
                 case 5: // char
+                    obj = frame.method.clazz.loader.load("[C").newObject();
+                    obj.data = new byte[count];
+                    break;
+                case 10: // int
                     obj = frame.method.clazz.loader.load("[I").newObject();
+                    obj.data = new int[count];
+                    break;
+                case 8: // byte
+                    obj = frame.method.clazz.loader.load("[B").newObject();
+                    obj.data = new int[count];
+                    break;
+                case 4: // boolean
+                    obj = frame.method.clazz.loader.load("[Z").newObject();
+                    obj.data = new int[count];
+                    break;
+                case 9: // short
+                    obj = frame.method.clazz.loader.load("[S").newObject();
                     obj.data = new int[count];
                     break;
                 case 11:

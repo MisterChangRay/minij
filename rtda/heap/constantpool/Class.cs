@@ -52,7 +52,7 @@ namespace minij.rtda.heap
         public string getArrayType()
         {
             var i = this.name.LastIndexOf("[");
-            return this.name.Substring(i + 1);
+            return this.name.Substring(i + 1).ToUpper();
         }
 
         public Field findField(string name, string descriptor)

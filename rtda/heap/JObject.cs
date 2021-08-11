@@ -19,8 +19,38 @@ namespace minij.rtda.heap
             JObject jobj = new JObject();
             jobj.clazz = clz;
             jobj.data = new object[clz.maxInstanceSlotId];
+
+            initFieldVar(jobj, clz);
             return jobj;
 
+        }
+
+
+        // init instance field var
+        private static void initFieldVar(JObject jobj, Class clz)
+        {
+            if(clz.fields == null)
+            {
+                return;
+            }
+            if (clz.superClazz != null) {
+                initFieldVar(jobj, clz.superClazz);
+            }
+
+            object[] tmp = (object[])jobj.data;
+            clz.fields.ForEach(f => {
+                if (f.accessFlags.ACC_STATIC()) return;
+                switch (f.descriptor) {
+                    case "L":
+                    case "[":
+                        tmp[f.slotId] = null;
+                        break;
+                    default : 
+                        tmp[f.slotId] = 0;
+                        break;
+                }
+            });
+           
         }
 
         public void setFieldVal(string name, string descriptor, JObject val)

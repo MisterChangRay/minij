@@ -17,12 +17,15 @@ namespace minij.instructions
         public static void initNativeMethod()
         {
             register("registerNatives", "()V", new System_registerNatives());
+            register("arraycopy", "(Ljava/lang/Object;ILjava/lang/Object;II)V", new System_arraycopy());
 
             register("getPrimitiveClass", "(Ljava/lang/String;)Ljava/lang/Class;", new Class_getPrimitiveClass());
-
             register("getName0", "()Ljava/lang/String;", new Class_getName0());
 
+
             register("desiredAssertionStatus0", "(Ljava/lang/Class;)Z", new Class_desiredAssertionStatus0());
+
+
 
             register("getClass", "()Ljava/lang/Class;", new Object_getClass());
 
