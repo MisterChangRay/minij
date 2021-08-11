@@ -50,7 +50,10 @@ namespace minij.instructions
                 case 0xb3:
                     return new PUT_STATIC();
 
-
+                case 0xc0:
+                    return new Checkcast();
+                case 0xc1:
+                    return new Instanceof();
                 case 0xc5:
                     return new MULTIA_NEW_ARRAY();
 

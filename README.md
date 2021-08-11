@@ -22,14 +22,20 @@ public class Hello {
 // 2.
 public class Hello {
   public static void main(String[] args) {
-        Integer i = 12;
+              
+        int i = 1;
         System.out.println(i);
-        String s1 = "test12";
-        System.out.println(s1); // test12
-        String s2 = "test" + 1;
-        System.out.println(s1.equals(s2)); // false
-        s2.intern();
+        String s1 = "test1";
+        System.out.println(s1); // test1
+        String s2 = "test";
+        s2 = s2 + i;
+        System.out.println(s2); // test1
+        System.out.println(s1 == s2); // false
         System.out.println(s1.equals(s2)); // true
+        s2.intern();
+        System.out.println(s1 == s2); // true
+
+        
   }
 }
 ```

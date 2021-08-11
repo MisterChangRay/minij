@@ -126,6 +126,10 @@ namespace minij.instructions.math
 
                             Console.WriteLine(StringPool.toJString(tmp3));
                             break;
+                        default:
+                            Console.WriteLine("假装打印了一个");
+                            frame.operandStack.popRef();
+                            break;
                     }
                     frame.operandStack.popRef();
                     return;
