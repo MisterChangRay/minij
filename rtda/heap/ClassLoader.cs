@@ -86,7 +86,7 @@ namespace minij.rtda.heap
             }
 
             string clzkey = "java/lang/Class";
-            if (cache.ContainsKey(clzkey)) {
+            if (null != clz && cache.ContainsKey(clzkey)) {
                 var baseClz = cache[clzkey];
                 clz.clzObj = baseClz.newObject();
                 clz.clzObj.ext = clz;
@@ -109,6 +109,10 @@ namespace minij.rtda.heap
         private Class loadObjectClz(string name)
         {
             var data = classpath.read(name);
+            if(data == null)
+            {
+                return null;
+            }
             ClassFile clzFile = new ClassFile(data);
             clzFile.parse();
 

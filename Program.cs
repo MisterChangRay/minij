@@ -28,6 +28,7 @@ namespace minij
             if (config == null || 
                 config.mainClass == null ||
                 config.mainClass.Length < 1) {
+                Console.WriteLine("用法: minij.exe [-options] class [args...]");
                 return;
             }
             initArgs(config);
@@ -45,6 +46,11 @@ namespace minij
             ClassLoader loader = new ClassLoader(c);
 
             Class clz = loader.load(config.mainClass);
+            if(clz == null)
+            {
+                Console.WriteLine("错误: 找不到或无法加载主类 " + config.mainClass);
+                return;
+            }
             Method method = clz.getMethod("main", "([Ljava/lang/String;)V", true);
             if(null == method) {
                 Console.WriteLine("Not Found Main Method");
