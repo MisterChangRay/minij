@@ -40,9 +40,9 @@ namespace minij.rtda.heap
             object[] tmp = (object[])jobj.data;
             clz.fields.ForEach(f => {
                 if (f.accessFlags.ACC_STATIC()) return;
-                switch (f.descriptor) {
-                    case "L":
-                    case "[":
+                switch (f.descriptor[0]) {
+                    case 'L':
+                    case '[':
                         tmp[f.slotId] = null;
                         break;
                     default : 

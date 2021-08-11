@@ -27,6 +27,7 @@ namespace minij.instructions
 
 
             register("java/lang/Object", "getClass", "()Ljava/lang/Class;", new Object_getClass());
+            register("java/lang/Object", "hashCode", "()I", new Object_hashCode());
 
             register("java/lang/Float", "floatToRawIntBits", "(F)I", new Float_ToRawIntBits());
             register("java/lang/Double", "doubleToRawLongBits", "(D)L",new  Double_ToRawLongBits());

@@ -20,5 +20,8 @@ public static void main(String[] args) {
         s2.intern();
         System.out.println(s1 == s2); // true
 
+        MyObject a3 = new MyObject();
+        System.out.println(a3.toString()); // true
+
 }
 }

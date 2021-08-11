@@ -13,7 +13,7 @@ namespace minij.instructions.control
     class IFEQ : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -28,7 +28,7 @@ namespace minij.instructions.control
     class IFNE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -44,7 +44,7 @@ namespace minij.instructions.control
     class IFLT : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -60,7 +60,7 @@ namespace minij.instructions.control
     class IFLE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -77,7 +77,7 @@ namespace minij.instructions.control
     class IFGT : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -93,7 +93,7 @@ namespace minij.instructions.control
     class IFGE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -109,7 +109,7 @@ namespace minij.instructions.control
     class IFNULL : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -125,7 +125,7 @@ namespace minij.instructions.control
     class IFNONNULL : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -141,7 +141,7 @@ namespace minij.instructions.control
     class IF_ICMPEQ : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -158,7 +158,7 @@ namespace minij.instructions.control
     class IF_ICMPNE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -178,7 +178,7 @@ namespace minij.instructions.control
     {
         public  override void   feachOperationCode(CodeReader reader)
         {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -196,7 +196,7 @@ namespace minij.instructions.control
     class IF_ICMPLE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -214,7 +214,7 @@ namespace minij.instructions.control
     class IF_ICMPGT : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -232,7 +232,7 @@ namespace minij.instructions.control
     class IF_ICMPGE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -250,7 +250,7 @@ namespace minij.instructions.control
     class IF_ACMPEQ : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {
@@ -268,7 +268,7 @@ namespace minij.instructions.control
     class IF_ACMPNQ : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
-            this.index = reader.readUint16();
+            this.index = unchecked((Int16)reader.readUint16());
         }
         public  override void   execute(Frame frame)
         {

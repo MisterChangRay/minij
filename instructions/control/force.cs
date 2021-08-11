@@ -26,7 +26,7 @@ namespace minij.instructions.control
     {
         public override void  feachOperationCode(CodeReader reader)
         {
-            this.index = reader.readUint32();
+            this.index = unchecked((Int32)reader.readUint32());
         }
         public override void  execute(Frame frame)
         {
