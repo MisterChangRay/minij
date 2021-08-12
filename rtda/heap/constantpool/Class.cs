@@ -32,6 +32,9 @@ namespace minij.rtda.heap
         
 
         public Class superClazz;
+
+        
+
         public Class[] interfaces;
         public List<Field> fields;
         public List<Method> methods;
@@ -43,6 +46,11 @@ namespace minij.rtda.heap
         public int maxInstanceSlotId;
         public int maxStaticSlotId;
 
+
+        public bool isPrimitive()
+        {
+            return ClassLoader.primitive.ContainsKey(this.name);
+        }
 
         public bool isArray()
         {

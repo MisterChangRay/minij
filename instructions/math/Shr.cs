@@ -19,7 +19,7 @@ namespace minij.instructions.math
             var val1 = frame.operandStack.popInt();
             var val2 = frame.operandStack.popInt();
             var val3 = val2 >> val1;
-            frame.operandStack.pushLong(val3);
+            frame.operandStack.pushInt(val3);
         }
 
     }

@@ -13,7 +13,7 @@ namespace minij.rtda.heap
         Classpath classpath = null;
 
         Dictionary<string, Class> cache = new Dictionary<string, Class>();
-        static Dictionary<string, bool> primitive = new Dictionary<string, bool> {
+        public static Dictionary<string, bool> primitive = new Dictionary<string, bool> {
             {"void", true },
             {"byte", true },
             {"boolean", true },

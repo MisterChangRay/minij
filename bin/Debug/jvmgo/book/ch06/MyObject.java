@@ -1,27 +1,31 @@
 package jvmgo.book.ch06;
-public class MyObject {
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MyObject implements Cloneable {
 
 public final static int finalVar = 99;
 public static int staticVar = 55;
 public int instanceVar = 66;
 
+private double pi = 3.14;
+@Override
+public MyObject clone() {
+try {
+return (MyObject) super.clone();
+} catch (CloneNotSupportedException e) {
+throw new RuntimeException(e);
+}
+}
 public static void main(String[] args) {
+MyObject obj1 = new MyObject();
+MyObject obj2 = obj1.clone();
+obj1.pi = 3.1415926;
+System.out.println(obj1.pi);
+System.out.println(obj2.pi);
 
-  	        
-        int i = 1;
-        System.out.println(i);
-        String s1 = "test1";
-        System.out.println(s1); // test1
-        String s2 = "test";
-        s2 = s2 + i;
-        System.out.println(s2); // test1
-        System.out.println(s1 == s2); // false
-        System.out.println(s1.equals(s2)); // true
-        s2.intern();
-        System.out.println(s1 == s2); // true
-
-        MyObject a3 = new MyObject();
-        System.out.println(a3.toString()); // true
-
+System.out.println(obj2 == obj2);
 }
 }

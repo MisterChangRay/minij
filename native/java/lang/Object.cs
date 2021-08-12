@@ -11,6 +11,16 @@ using System.Threading.Tasks;
 namespace minij.native.java.lang
 {
 
+    class Object_clone : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader) { }
+        public override void execute(Frame frame)
+        {
+            var jobj = frame.localVars.getRef(0);
+            frame.operandStack.pushRef(jobj.clone());
+
+        }
+    }
 
     class Object_getClass : Instruction
     {

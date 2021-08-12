@@ -25,7 +25,7 @@ namespace minij.instructions
             register("java/lang/Class", "desiredAssertionStatus0", "(Ljava/lang/Class;)Z", new Class_desiredAssertionStatus0());
 
 
-
+            register("java/lang/Object", "clone", "()Ljava/lang/Object;", new Object_clone());
             register("java/lang/Object", "getClass", "()Ljava/lang/Class;", new Object_getClass());
             register("java/lang/Object", "hashCode", "()I", new Object_hashCode());
 

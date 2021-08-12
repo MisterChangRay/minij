@@ -54,12 +54,12 @@ namespace minij.rtda
         public   void  pushLong(long i)
         {
             stcks[index] = i;
-            index += 1;
+            index += 2;
         }
 
         public long popLong()
         {
-            index -= 1;
+            index -= 2;
             return (long)stcks[index];
         }
 
@@ -77,11 +77,11 @@ namespace minij.rtda
         public   void  pushDouble(double i)
         {
             stcks[index] = i;
-            index += 1;
+            index += 2;
         }
         public double popDouble()
         {
-            index -= 1;
+            index -= 2;
             return (double)stcks[index];
         }
 

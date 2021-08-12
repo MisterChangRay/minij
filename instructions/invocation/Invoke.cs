@@ -109,8 +109,12 @@ namespace minij.instructions.math
                 {
                     switch (methodRef.descriptor)
                     {
+                        case "(D)V":
+                            var tmp = frame.operandStack.popDouble();
+                            Console.WriteLine(tmp);
+                            break;
                         case "(Z)V":
-                            var tmp = frame.operandStack.popInt();
+                             tmp = frame.operandStack.popInt();
                             Console.WriteLine(0 != tmp);
                             break;
                         case "(I)V":
