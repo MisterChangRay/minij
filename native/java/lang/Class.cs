@@ -11,7 +11,21 @@ using System.Threading.Tasks;
 namespace minij.native.java.lang
 {
 
-    
+    class Class_getComponentType : Instruction
+    {
+        public override void feachOperationCode(CodeReader reader) { }
+        public override void execute(Frame frame)
+        {
+            var self = frame.localVars.getRef(0);
+            if(!self.clazz.isArray())
+            {
+                frame.operandStack.pushRef(null);
+                return;
+            }
+            frame.operandStack.pushRef(self);
+
+        }
+    }
 
     class Class_desiredAssertionStatus0 : Instruction
     {

@@ -8,7 +8,7 @@ using minij.rtda;
 
 
 // FLOAT TO X
-namespace minij.instructions.math
+namespace minij.instructions.convert
 {
     class F2I : Instruction
     {

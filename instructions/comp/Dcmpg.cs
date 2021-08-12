@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using minij.classfile;
 using minij.rtda;
 
-namespace minij.instructions.math
+namespace minij.instructions.comp
 {
     class DCMPG : Instruction
     {

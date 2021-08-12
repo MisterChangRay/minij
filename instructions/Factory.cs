@@ -1,5 +1,13 @@
-﻿using minij.instructions.control;
+﻿using minij.instructions.comp;
+using minij.instructions.consts;
+using minij.instructions.control;
+using minij.instructions.convert;
+using minij.instructions.invocation;
+using minij.instructions.load;
 using minij.instructions.math;
+using minij.instructions.references;
+using minij.instructions.stack;
+using minij.instructions.store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -434,7 +442,7 @@ namespace minij.instructions
                 case 0xA5:
                     return new IF_ACMPEQ();
                 case 0xA6:
-                    return new IF_ACMPNQ();
+                    return new IF_ACMPNE();
 
                 case 0xA7:
                     return new GOTO();

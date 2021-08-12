@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using minij.classfile;
 using minij.rtda;
 
-namespace minij.instructions.math
+namespace minij.instructions.consts
 {
     class ICONST_M1 : Instruction
     {

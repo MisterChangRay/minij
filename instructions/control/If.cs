@@ -265,7 +265,7 @@ namespace minij.instructions.control
 
     }
 
-    class IF_ACMPNQ : Instruction
+    class IF_ACMPNE : Instruction
     {
         public  override void   feachOperationCode(CodeReader reader) {
             this.index = unchecked((Int16)reader.readUint16());

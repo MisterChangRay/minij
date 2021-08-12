@@ -8,7 +8,7 @@ using minij.rtda;
 
 
 // double TO X
-namespace minij.instructions.math
+namespace minij.instructions.convert
 {
     class D2I : Instruction
     {

@@ -8,7 +8,7 @@ using minij.rtda;
 
 
 // LONG TO X
-namespace minij.instructions.math
+namespace minij.instructions.convert
 {
     class L2I : Instruction
     {

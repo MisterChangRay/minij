@@ -8,7 +8,7 @@ using minij.rtda;
 using minij.rtda.heap.constantpool;
 using minij.rtda.heap;
 
-namespace minij.instructions.math
+namespace minij.instructions.invocation
 {
     //invoke native
     class InvokeNative : Instruction

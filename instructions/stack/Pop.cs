@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // 
-namespace minij.instructions.math
+namespace minij.instructions.stack
 {
     class POP : Instruction
     {

@@ -9,7 +9,7 @@ using minij.instructions;
 using minij.rtda.heap;
 using minij.rtda.heap.constantpool;
 
-namespace minij.instructions.math
+namespace minij.instructions.references
 {
     class NEW : Instruction
     {
