@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using minij.native.java.lang;
 
 namespace minij.rtda
 {
@@ -15,7 +16,7 @@ namespace minij.rtda
             stcks = new Frame[i];
         }
 
-        public   void  push(Frame f)
+        public void  push(Frame f)
         {
             stcks[index] = f;
             index++;
@@ -26,6 +27,22 @@ namespace minij.rtda
         public Frame next()
         {
             return stcks[index - 2];
+        }
+
+        public List<StackTraceElement> getStackTraceElement()
+        {
+            List<StackTraceElement> res = new List<StackTraceElement>();
+            for (int i = index - 1; i  > -1; i--)
+            {
+                StackTraceElement s = new StackTraceElement();
+                var frame = this.stcks[i];
+                s.fileName = frame.method.clazz.getFileName();
+                s.className = frame.method.clazz.javaName0();
+                s.lineNumber = frame.method.getLineNum(frame.thread.pc);
+                s.methodName = frame.method.name;
+                res.Add(s);
+            }
+            return res;
         }
 
         public Frame pop()

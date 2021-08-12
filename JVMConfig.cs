@@ -15,6 +15,7 @@ namespace minij
         public string classpath { get; set; }
         public string Xjre { get; set; }
         public string mainClass { get; set; }
+        public string[] bootArgs { get; set; }
 
 
     }

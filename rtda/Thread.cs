@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using minij.rtda.heap;
 using minij.classfile;
 using minij.classfile.attributes;
+using minij.native.java.lang;
 
 namespace minij.rtda
 {
@@ -14,6 +15,10 @@ namespace minij.rtda
         private FrameStack frames;
         public int pc;
 
+        public List<StackTraceElement> getStackTraceElement()
+        {
+            return frames.getStackTraceElement();
+        }
 
 
         public Thread() {

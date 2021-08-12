@@ -15,6 +15,7 @@ namespace minij
         public   void  start(Method  method) {
             Thread thread = new Thread();
             Frame minFrame = thread.newFrame(method);
+            injectBootArgs(minFrame, method);
             thread.pushFrame(minFrame);
 
             while (true) {
@@ -39,5 +40,22 @@ namespace minij
                
             }
         }
+
+        private void injectBootArgs(Frame minFrame, Method method)
+        {
+            var clz = method.clazz.loader.load("[Ljava/lang/String;");
+            var argsObj = clz.newObject();
+
+            var bootConfig = Program.config.bootArgs;
+            argsObj.data = new JObject[bootConfig.Length];
+            var c = (JObject[])argsObj.data;
+            for (int i = 0; i < bootConfig.Length; i++)
+            {
+                c[i] = StringPool.newString(method.clazz.loader, bootConfig[i]);
+            }
+            minFrame.localVars.setRef(0, argsObj);
+
+        }
+
     }
 }

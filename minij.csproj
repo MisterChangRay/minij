@@ -144,6 +144,7 @@
     <Compile Include="instructions\store\Store.cs" />
     <Compile Include="Interpreter.cs" />
     <Compile Include="JVMConfig.cs" />
+    <Compile Include="native\java\lang\Throwable.cs" />
     <Compile Include="native\java\lang\Double.cs" />
     <Compile Include="native\java\lang\Float.cs" />
     <Compile Include="native\java\lang\Class.cs" />

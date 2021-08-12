@@ -67,7 +67,7 @@ namespace minij
             NativeMethod.initNativeMethod();
         }
 
-        private static   void  initArgs(JVMConfig config)
+        private static void  initArgs(JVMConfig config)
         {
        
 
@@ -98,6 +98,8 @@ namespace minij
 
         public static   void  parseArgs(string[] args) {
             if (args.Length < 1) return;
+            List<string> argsl = new List<string>();
+
             for (int i = 0; i < args.Length; i+=1)
             {
                 string key = safeGetArg(args, i);
@@ -105,23 +107,33 @@ namespace minij
                 if (key.Contains("-"))
                 {
                     key = key.ToLower();
-
                     var count = setArg(key, val);
-
                     i += count;
 
+                    argsl.Add(key);
+                    if(count > 0)
+                    {
+                        argsl.Add(val);
+                    }
                 }
                 else
                 {
-                    config.mainClass = key;
+                    if(config.mainClass == null)
+                    {
+                        config.mainClass = key;
+                    } else {
+                        argsl.Add(key);
+                    }
+                    
                 }
-
-
             }
-		}
+
+            config.bootArgs = argsl.ToArray();
+
+        }
 
 
-        
+
         private static int setArg(string key, string v)
         {
             switch(key)

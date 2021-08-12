@@ -37,7 +37,7 @@ namespace minij.instructions
 
             register("java/lang/String", "intern", "()Ljava/lang/String;", new String_intern());
 
-
+            register("java/lang/Throwable", "fillInStackTrace", "(I)Ljava/lang/Throwable;", new Throwable_fillInStackTrace());
             register("java/lang/reflect/Array", "newArray", "(Ljava/lang/Class;I)Ljava/lang/Object;", new Array_newArray());
 
 

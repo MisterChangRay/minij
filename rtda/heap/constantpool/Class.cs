@@ -38,6 +38,9 @@ namespace minij.rtda.heap
         public Class[] interfaces;
         public List<Field> fields;
         public List<Method> methods;
+
+        
+
         public List<classfile.attributes.Attribute> attributes;
 
         public object[] staticVars;  // 静态变量
@@ -52,9 +55,35 @@ namespace minij.rtda.heap
             return ClassLoader.primitive.ContainsKey(this.name);
         }
 
+        public string getFileName()
+        {
+            var sourceFile = (AttrSourceFile)this.getAttribute("SourceFile");
+            if (null == sourceFile) return "-1";
+
+            return sourceFile.sourcefile;
+
+        }
+
         public bool isArray()
         {
             return this.name.StartsWith("[");
+        }
+
+
+
+
+        public minij.classfile.attributes.Attribute getAttribute(string name)
+        {
+            foreach (var attr in this.attributes)
+            {
+                if (attr == null) continue;
+                if (attr.name == name)
+                {
+                    return attr;
+                }
+            }
+            return null;
+
         }
 
         public string getArrayType()
@@ -85,9 +114,14 @@ namespace minij.rtda.heap
             return res;
         }
 
-        public JObject javaName()
+        public string javaName0()
         {
             var name = this.name.Replace("/", ".");
+            return name;
+        }
+        public JObject javaName()
+        {
+            var name = this.javaName0();
             var obj = StringPool.newString(this.loader, name);
             return obj;
         }

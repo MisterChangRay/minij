@@ -102,6 +102,25 @@ namespace minij.rtda.heap
             this.argsAndReturn.argCount = soltCount;
         }
 
+        public string getLineNum(int pc)
+        {
+            var lineNumberTable = (AttrLineNumberTable)this.getAttribute("LineNumberTable");
+            if (null == lineNumberTable) return "-1";
+
+            string res = null;
+            lineNumberTable.line_number_table.Reverse();
+            lineNumberTable.line_number_table.ForEach(t =>
+            {
+                if(null == res && t.start_pc < pc)
+                {
+                    res = t.line_number + "";
+                }
+            });
+            return res;
+
+        }
+
+ 
 
         public minij.classfile.attributes.Attribute getAttribute(string name) {
             foreach(var attr in attrs)

@@ -19,11 +19,13 @@ namespace minij.classfile.attributes
     {
      
         public UInt16 sourcefile_index;
+        public string sourcefile;
 
         public override Reader parse(ClassReader classReader, ClassFile cf)
         {
            
             this.sourcefile_index = classReader.readUInt16();
+            this.sourcefile = cf.getString(this.sourcefile_index);
             return this;
         }
     }
