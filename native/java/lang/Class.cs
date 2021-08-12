@@ -17,7 +17,8 @@ namespace minij.native.java.lang
         public override void execute(Frame frame)
         {
             var self = frame.localVars.getRef(0);
-            if(!self.clazz.isArray())
+            var ext = (Class)self.ext;
+            if (!ext.isArray())
             {
                 frame.operandStack.pushRef(null);
                 return;

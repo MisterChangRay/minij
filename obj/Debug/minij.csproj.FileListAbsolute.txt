@@ -4,4 +4,3 @@ C:\Users\Mrui\Desktop\minij\minij\bin\Debug\minij.pdb
 C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.exe
 C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.pdb
 C:\Users\Mrui\Desktop\minij\minij\bin\Debug\System.IO.Compression.ZipFile.dll
-C:\Users\Mrui\Desktop\minij\minij\obj\Debug\minij.csprojResolveAssemblyReference.cache

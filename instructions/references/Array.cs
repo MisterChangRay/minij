@@ -121,7 +121,7 @@ namespace minij.instructions.references
             ClassRef c = (ClassRef)frame.method.clazz.cpInfo[this.index];
             Class c2 = c.resloveClass();
 
-            var clz = c2.loader.load("[L" + c2.name);
+            var clz = c2.loader.load("[L" + c2.name + ";");
             JObject obj = clz.newObject();
             obj.data = new JObject[count];
 

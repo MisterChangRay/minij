@@ -1,5 +1,6 @@
 ﻿using minij.classfile;
 using minij.native.java.lang;
+using minij.native.java.lang.reflect;
 using minij.native.java.lang.sun.misc;
 using minij.rtda;
 using System;
@@ -22,7 +23,7 @@ namespace minij.instructions
 
             register("java/lang/Class", "getPrimitiveClass", "(Ljava/lang/String;)Ljava/lang/Class;", new Class_getPrimitiveClass());
             register("java/lang/Class", "getName0", "()Ljava/lang/String;", new Class_getName0());
-            //register("java/lang/Class", "getComponentType", "()Ljava/lang/Class;", new Class_getComponentType());
+            register("java/lang/Class", "getComponentType", "()Ljava/lang/Class;", new Class_getComponentType());
 
             register("java/lang/Class", "desiredAssertionStatus0", "(Ljava/lang/Class;)Z", new Class_desiredAssertionStatus0());
 
@@ -35,6 +36,9 @@ namespace minij.instructions
             register("java/lang/Double", "doubleToRawLongBits", "(D)L",new  Double_ToRawLongBits());
 
             register("java/lang/String", "intern", "()Ljava/lang/String;", new String_intern());
+
+
+            register("java/lang/reflect/Array", "newArray", "(Ljava/lang/Class;I)Ljava/lang/Object;", new Array_newArray());
 
 
             register("sun/misc/VM", "initialize", "()V", new VM_initialize());

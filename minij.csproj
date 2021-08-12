@@ -147,6 +147,7 @@
     <Compile Include="native\java\lang\Double.cs" />
     <Compile Include="native\java\lang\Float.cs" />
     <Compile Include="native\java\lang\Class.cs" />
+    <Compile Include="native\java\lang\reflect\Array.cs" />
     <Compile Include="native\java\lang\String.cs" />
     <Compile Include="native\java\lang\System.cs" />
     <Compile Include="native\java\lang\Object.cs" />
