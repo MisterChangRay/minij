@@ -26,15 +26,17 @@ namespace minij.native.java.lang
         {
             var skip = distanceToObject(self.clazz) + 2;
             List<StackTraceElement> res= thread.getStackTraceElement();
-            return res.GetRange(skip, res.Count);
+            return res.GetRange(skip, res.Count - skip);
         }
 
         private int distanceToObject(Class clazz)
         {
-            int i = 0;
-            while(clazz.superClazz != null)
+            int i = 1;
+            var tmp = clazz.superClazz;
+            while (tmp != null)
             {
                 i++;
+                tmp = tmp.superClazz;
             }
             return i;
         }
@@ -47,6 +49,8 @@ namespace minij.native.java.lang
         public string className;
         public string methodName;
         public string lineNumber;
+
+   
     }
 
 }

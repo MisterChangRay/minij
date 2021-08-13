@@ -1,4 +1,6 @@
-﻿using System;
+﻿using minij.rtda;
+using minij.rtda.heap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +56,25 @@ namespace minij.classfile.attributes
 
             return this;
 
+
+        }
+
+
+        public string getLineNum(int pc)
+        {
+            var lineNumberTable = (AttrLineNumberTable) Util.getAttr(this.attributes, "LineNumberTable");
+            if (null == lineNumberTable) return "-1";
+
+            string res = null;
+            lineNumberTable.line_number_table.Reverse();
+            lineNumberTable.line_number_table.ForEach(t =>
+            {
+                if (t.start_pc < pc)
+                {
+                    res = t.line_number + "";
+                }
+            });
+            return res;
 
         }
     }

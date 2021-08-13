@@ -38,6 +38,14 @@ namespace minij.rtda
             frames.push(f);
         }
 
+        public void cleanFrameStack()
+        {
+            while(!frames.isEmpty())
+            {
+                this.frames.pop();
+            }
+        }
+
         public Frame next()
         {
             return frames.next();

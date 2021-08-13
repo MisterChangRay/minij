@@ -30,16 +30,9 @@ namespace minij.rtda.heap
 
         public minij.classfile.attributes.Attribute getAttr(string v)
         {
-            minij.classfile.attributes.Attribute res = null;
-            this.attrs.ForEach(item =>
-            {
-                if (item == null) return;
-                if (res == null && item.name == v)
-                {
-                    res = item;
-                }
-            });
-            return res;
+            return Util.getAttr(this.attrs, v);
         }
+
+       
     }
 }

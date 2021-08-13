@@ -43,7 +43,7 @@ namespace minij
 
         private void injectBootArgs(Frame minFrame, Method method)
         {
-            var clz = method.clazz.loader.load("[Ljava/lang/String;");
+            var clz = method.clazz.loader.load(StringPool.getStringAsArrDescriptor());
             var argsObj = clz.newObject();
 
             var bootConfig = Program.config.bootArgs;

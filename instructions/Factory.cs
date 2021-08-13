@@ -37,6 +37,8 @@ namespace minij.instructions
 
                 case 0xbe:
                     return new ARRAYLENGTH();
+                case 0xbf:
+                    return new ATHROW();
                 case 0xb8:
                     return new Invokestatic();
 

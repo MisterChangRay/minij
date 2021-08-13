@@ -135,6 +135,7 @@
     <Compile Include="instructions\math\Add.cs" />
     <Compile Include="instructions\references\Array.cs" />
     <Compile Include="instructions\references\Checkcast.cs" />
+    <Compile Include="instructions\references\Athrow.cs" />
     <Compile Include="instructions\references\Instanceof.cs" />
     <Compile Include="instructions\references\New.cs" />
     <Compile Include="instructions\references\Field.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="rtda\heap\Method.cs" />
     <Compile Include="rtda\heap\constantpool\Class.cs" />
     <Compile Include="rtda\heap\StringPool.cs" />
+    <Compile Include="rtda\Util.cs" />
     <Compile Include="rtda\LocalVars.cs" />
     <Compile Include="rtda\OperandStack.cs" />
     <Compile Include="rtda\Frame.cs" />

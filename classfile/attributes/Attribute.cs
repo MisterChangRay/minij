@@ -13,5 +13,6 @@ namespace minij.classfile.attributes
         public string name;
 
         public abstract Reader parse(ClassReader classReader, ClassFile cf);
+
     }
 }

@@ -102,25 +102,23 @@ namespace minij.rtda.heap
             this.argsAndReturn.argCount = soltCount;
         }
 
-        public string getLineNum(int pc)
+        public ExceptionTable findCatchHandler(Class ex, int pc)
         {
-            var lineNumberTable = (AttrLineNumberTable)this.getAttribute("LineNumberTable");
-            if (null == lineNumberTable) return "-1";
-
-            string res = null;
-            lineNumberTable.line_number_table.Reverse();
-            lineNumberTable.line_number_table.ForEach(t =>
+           AttrCode code =  (AttrCode)this.getAttribute("Code");
+            if(code.exception_table_length == 0 )
             {
-                if(null == res && t.start_pc < pc)
+                return null;
+            }
+
+            ExceptionTable exet = null;
+            code.exception_table.ForEach(exl => {
+                if(exl.start_pc <= pc && exl.end_pc >= pc)
                 {
-                    res = t.line_number + "";
+                    exet = exl;
                 }
             });
-            return res;
-
+            return exet;
         }
-
- 
 
         public minij.classfile.attributes.Attribute getAttribute(string name) {
             foreach(var attr in attrs)

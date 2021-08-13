@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using minij.native.java.lang;
+using minij.classfile.attributes;
 
 namespace minij.rtda
 {
@@ -38,7 +39,8 @@ namespace minij.rtda
                 var frame = this.stcks[i];
                 s.fileName = frame.method.clazz.getFileName();
                 s.className = frame.method.clazz.javaName0();
-                s.lineNumber = frame.method.getLineNum(frame.thread.pc);
+                AttrCode c = (AttrCode)frame.method.getAttribute("Code");
+                s.lineNumber = c.getLineNum(frame.nextPc);
                 s.methodName = frame.method.name;
                 res.Add(s);
             }

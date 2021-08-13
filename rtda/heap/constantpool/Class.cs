@@ -57,7 +57,7 @@ namespace minij.rtda.heap
 
         public string getFileName()
         {
-            var sourceFile = (AttrSourceFile)this.getAttribute("SourceFile");
+            var sourceFile = (AttrSourceFile) Util.getAttr(this.attributes, "SourceFile");
             if (null == sourceFile) return "-1";
 
             return sourceFile.sourcefile;
@@ -72,19 +72,7 @@ namespace minij.rtda.heap
 
 
 
-        public minij.classfile.attributes.Attribute getAttribute(string name)
-        {
-            foreach (var attr in this.attributes)
-            {
-                if (attr == null) continue;
-                if (attr.name == name)
-                {
-                    return attr;
-                }
-            }
-            return null;
-
-        }
+      
 
         public string getArrayType()
         {
@@ -289,6 +277,7 @@ namespace minij.rtda.heap
             // 初始化父类和接口
             this.copySuperClzAndInterface(clzFile);
 
+            this.attributes = clzFile.attributes;
             this.resloveSuperClass();
             this.resloveInterface();
 

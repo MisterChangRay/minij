@@ -20,7 +20,7 @@ namespace minij.rtda.heap
                 return (JObject)cache[val];
             }
 
-            var clz = loader.load("java/lang/String");
+            var clz = loader.load(StringPool.getStringDescriptor());
             JObject jo =  clz.newObject();
 
             // 加载字符串数组
@@ -35,6 +35,16 @@ namespace minij.rtda.heap
             return jo;
         }
 
+
+        public static string getStringDescriptor()
+        {
+            return "java/lang/String";
+        }
+
+        public static string getStringAsArrDescriptor()
+        {
+            return "[Ljava/lang/String;";
+        }
 
         public static string toJString(JObject tmp3)
         {
