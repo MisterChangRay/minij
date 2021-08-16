@@ -11,7 +11,9 @@ https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.1
 ## 演示
 下载发布版本
 通过 javac 编译后即可执行 `minij.exe Hello`即可观察效果:
-加参数`minij.exe Hello -v` 可以观察到详细指令执行流程.
+
+执行`minij.exe Hello -v` 可以观察到详细的指令执行流程.
+
 ```java
 // 1.
 public class Hello {
