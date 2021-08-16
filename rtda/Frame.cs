@@ -39,10 +39,16 @@ namespace minij.rtda
         public void reversePC() {
             this.nextPc = this.thread.pc;
         }
+        public void setNextPc(int nextPc)
+        {
+            this.nextPc = nextPc;
+        }
 
         public void  newBranch(int index)
         {
-            this.nextPc = this.thread.pc + index;
+            var i = this.thread.pc + index;
+            this.setNextPc(i);
+
         }
 
         public void doInvoke(Method method)

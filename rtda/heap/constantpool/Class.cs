@@ -70,10 +70,6 @@ namespace minij.rtda.heap
         }
 
 
-
-
-      
-
         public string getArrayType()
         {
             var i = this.name.LastIndexOf("[");

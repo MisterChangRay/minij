@@ -13,7 +13,7 @@ namespace minij.instructions
         public int index;
         public int index2;
         public int index3;
-
+        public int[] index4;
 
         public virtual  void  feachOperationCode(CodeReader reader) { }
         public virtual  void  execute(Frame frame) { }

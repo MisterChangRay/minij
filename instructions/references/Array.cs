@@ -26,7 +26,7 @@ namespace minij.instructions.references
             switch (type)
             {
                 case "C": // char
-                    frame.operandStack.pushInt(((byte[])refa.data).Length);
+                    frame.operandStack.pushInt(((char[])refa.data).Length);
                     break;
                 case "I": // int
                 case "B": // byte
@@ -77,7 +77,7 @@ namespace minij.instructions.references
             switch (type)
             {
                 case "C": // char
-                    obj.data = Array.CreateInstance(typeof(byte), len);
+                    obj.data = Array.CreateInstance(typeof(char), len);
                     break;
                 case "I": // int
                 case "B": // byte
@@ -147,7 +147,7 @@ namespace minij.instructions.references
             {
                 case 5: // char
                     obj = frame.method.clazz.loader.load("[C").newObject();
-                    obj.data = new byte[count];
+                    obj.data = new char[count];
                     break;
                 case 10: // int
                     obj = frame.method.clazz.loader.load("[I").newObject();
@@ -279,7 +279,7 @@ namespace minij.instructions.references
                 throw new Exception("NullPointerException");
             }
 
-            var tmp = (byte[])self.data;
+            var tmp = (char[])self.data;
 
 
             if (index < 0 || index >= tmp.Length)
@@ -287,7 +287,7 @@ namespace minij.instructions.references
                 throw new Exception("IndexOutOfRangeException");
             }
 
-            tmp[index] = (byte)val;
+            tmp[index] = (char)val;
         }
 
     }
@@ -543,7 +543,7 @@ namespace minij.instructions.references
                 throw new Exception("NullPointerException");
             }
 
-            var tmp = (byte[])self.data;
+            var tmp = (char[])self.data;
 
 
             if (index < 0 || index >= tmp.Length)

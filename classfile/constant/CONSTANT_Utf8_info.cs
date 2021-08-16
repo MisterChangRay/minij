@@ -1,4 +1,5 @@
-﻿using System;
+﻿using minij.rtda.heap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,6 @@ namespace minij.classfile.constant
             this.bytes = classReader.readBytes(this.length, true);
             Encoding encodingUTF8 = new UTF8Encoding(true);
 
-            
             this.str = UnicodeEncoding.UTF8.GetString(this.bytes);
 
             return this;

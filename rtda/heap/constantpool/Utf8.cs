@@ -9,5 +9,6 @@ namespace minij.rtda.heap.constantpool
     class Utf8 : ConstantPool
     {
         public string str;
+        public byte[] data;
     }
 }

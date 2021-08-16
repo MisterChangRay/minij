@@ -21,10 +21,24 @@ namespace minij.classfile
             return reader.ReadByte();
         }
 
+        public void pading()
+        {
+            while(this.reader.BaseStream.Position % 4 != 0)
+            {
+               this.read();
+            }
+        }
+
         public int readUint16()
         {
             byte[] res = readBytes(2, true);
             return BitConverter.ToUInt16(res, 0);
+        }
+
+        public ulong readUint64()
+        {
+            byte[] res = readBytes(8, true);
+            return BitConverter.ToUInt64(res, 0);
         }
 
 
@@ -33,6 +47,17 @@ namespace minij.classfile
             byte[] res = readBytes(4, true);
             return BitConverter.ToUInt16(res, 0);
         }
+
+        public int[] readInts(int len)
+        {
+            int[] c = new int[len];
+            for (int i = 0; i < c.Length; i++)
+            {
+                c[i] = unchecked((int) this.readUint32());
+            }
+            return c;
+        }
+
 
         public byte[] readBytes(int i, bool reverse)
         {

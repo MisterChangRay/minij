@@ -32,8 +32,38 @@ namespace minij.rtda
             return f;
         }
 
+        public ExceptionTable findCatchHandler(Class clazz)
+        {
+            ExceptionTable exet = null;
 
-        public   void  pushFrame(Frame f)
+            while (!frames.isEmpty())
+            {
+                var method = frames.top().method;
+                AttrCode code = (AttrCode)method.getAttribute("Code");
+                if (null != code.exception_table)
+                {
+                    code.exception_table.ForEach(exl => {
+                        ClassRef c = (ClassRef)method.clazz.cpInfo[exl.catch_type];
+                        Class ex1 = c.resloveClass();
+                        if (ex1 == clazz)
+                        {
+                            exet = exl;
+                        }
+                    });
+                    if (null != exet)
+                    {
+                        break;
+                    }
+                }
+
+                frames.pop();
+            }
+           
+            return exet;
+        }
+
+
+    public   void  pushFrame(Frame f)
         {
             frames.push(f);
         }

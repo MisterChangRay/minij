@@ -25,7 +25,7 @@ namespace minij.instructions.references
                 throw new Exception("NullPointerException");
             }
 
-            var handle = frame.method.findCatchHandler(ex.clazz, frame.nextPc);
+            var handle = frame.thread.findCatchHandler(ex.clazz);
             if (handle == null)
             {
                 frame.thread.cleanFrameStack();
@@ -33,16 +33,14 @@ namespace minij.instructions.references
                 return;
             }
 
-            frame.newBranch(handle.handler_pc);
+            var top = frame.thread.topFrame();
+            top.operandStack.pushRef(ex);
+            top.setNextPc(handle.handler_pc);
 
         }
 
         private void printException(JObject ex)
         {
-
-        //jMsg:= ex.GetRefVar("detailMessage", "Ljava/lang/String;")
-        //goMsg:= heap.GoString(jMsg)
-        //println(ex.Class().JavaName() + ": " + goMsg)
 
             List<StackTraceElement> res = (List<StackTraceElement>)ex.ext;
             var f = ex.clazz.getField("detailMessage", "Ljava/lang/String;");

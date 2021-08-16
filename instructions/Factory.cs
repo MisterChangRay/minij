@@ -20,6 +20,12 @@ namespace minij.instructions
     {
         public static Instruction build(byte code) {
             switch (code) {
+
+                case 0xaa:
+                    return new TABLESWITCH();
+                case 0xab:
+                    return new LOOKUPSWITCH();
+                    
                 case 0x10:
                     return new BIPUSH();
                 case 0x11:

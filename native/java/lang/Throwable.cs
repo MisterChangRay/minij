@@ -31,7 +31,7 @@ namespace minij.native.java.lang
 
         private int distanceToObject(Class clazz)
         {
-            int i = 1;
+            int i = 0;
             var tmp = clazz.superClazz;
             while (tmp != null)
             {

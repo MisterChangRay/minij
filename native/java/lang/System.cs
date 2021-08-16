@@ -40,7 +40,7 @@ namespace minij.native.java.lang
             switch (type)
             {
                 case "C": // char
-                    Array.Copy((byte[])src.data, srcPos,(byte[]) dest.data, destPos, len);
+                    Array.Copy((char[])src.data, srcPos,(char[]) dest.data, destPos, len);
                     break;
                 case "I": // int
                 case "B": // byte

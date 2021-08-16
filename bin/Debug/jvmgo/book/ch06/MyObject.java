@@ -7,6 +7,7 @@ import java.util.List;
 public class MyObject  {
 
 public static void main(String[] args) {
+System.out.println(args[0]);
 	foo(args);
 }
 
@@ -18,8 +19,9 @@ System.out.println(e.getMessage());
 }
 }
 private static void bar(String[] args) {
+System.out.println(args.length);	
 if (args.length == 0) {
-throw new IndexOutOfBoundsException("no args!");
+	throw new IndexOutOfBoundsException("no args!");
 }
 int x = Integer.parseInt(args[0]);
 System.out.println(x);

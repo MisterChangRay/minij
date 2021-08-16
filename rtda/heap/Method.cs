@@ -102,24 +102,7 @@ namespace minij.rtda.heap
             this.argsAndReturn.argCount = soltCount;
         }
 
-        public ExceptionTable findCatchHandler(Class ex, int pc)
-        {
-           AttrCode code =  (AttrCode)this.getAttribute("Code");
-            if(code.exception_table_length == 0 )
-            {
-                return null;
-            }
-
-            ExceptionTable exet = null;
-            code.exception_table.ForEach(exl => {
-                if(exl.start_pc <= pc && exl.end_pc >= pc)
-                {
-                    exet = exl;
-                }
-            });
-            return exet;
-        }
-
+        
         public minij.classfile.attributes.Attribute getAttribute(string name) {
             foreach(var attr in attrs)
             {

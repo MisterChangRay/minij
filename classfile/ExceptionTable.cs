@@ -1,4 +1,5 @@
-﻿using System;
+﻿using minij.rtda.heap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace minij.classfile
        public UInt16 end_pc;
        public UInt16 handler_pc;
        public UInt16 catch_type;
+       public ClassRef clzRef;
 
         public Reader parse(ClassReader classReader, ClassFile cf)
         {
@@ -32,5 +34,8 @@ namespace minij.classfile
             this.catch_type = classReader.readUInt16();
             return this;
         }
+
+   
+
     }
 }

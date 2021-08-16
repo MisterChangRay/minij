@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace minij.rtda.heap
 {
-    class ClassRef : ConstantPool
+    public class ClassRef : ConstantPool
     {
         public string name;
 
